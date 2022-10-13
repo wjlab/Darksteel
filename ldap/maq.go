@@ -1,9 +1,9 @@
 package ldap
 
 import (
+	"darksteel/process"
 	"fmt"
 	"github.com/go-ldap/ldap/v3"
-	"tdk/process"
 )
 
 func SearchMaq(l **ldap.Conn, domain string, ldapSizeLimit int, outputFile string) {

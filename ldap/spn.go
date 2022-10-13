@@ -1,10 +1,10 @@
 package ldap
 
 import (
+	"darksteel/conf"
+	"darksteel/process"
 	"fmt"
 	"github.com/go-ldap/ldap/v3"
-	"tdk/conf"
-	"tdk/process"
 )
 
 func SearchSpn(l **ldap.Conn, domain string, ldapSizeLimit int, outputFile string) {

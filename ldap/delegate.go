@@ -1,11 +1,11 @@
 package ldap
 
 import (
+	"darksteel/conf"
+	"darksteel/process"
 	"encoding/base64"
 	"fmt"
 	"github.com/go-ldap/ldap/v3"
-	"tdk/conf"
-	"tdk/process"
 )
 
 var (

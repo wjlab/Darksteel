@@ -1,12 +1,12 @@
 package kerberos
 
 import (
+	"darksteel/conf"
 	"fmt"
 	"github.com/go-ldap/ldap/v3"
 	"github.com/vincd/savoir/modules/paquet/krb5"
 	"os"
 	"strings"
-	"tdk/conf"
 )
 
 type spnTarget struct {

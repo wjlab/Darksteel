@@ -1,12 +1,12 @@
 package kerberos
 
 import (
+	"darksteel/conf"
+	"darksteel/process"
 	"fmt"
 	"github.com/go-ldap/ldap/v3"
 	"github.com/vincd/savoir/modules/paquet/krb5"
 	"github.com/vincd/savoir/modules/paquet/krb5/crypto"
-	"tdk/conf"
-	"tdk/process"
 )
 
 func AsrepRoast(l **ldap.Conn, domain string, dcIp string, targetUser string, format string, enctype string, outputFile string, ldapSizeLimit int) error {

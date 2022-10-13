@@ -1,13 +1,13 @@
 package main
 
 import (
+	"darksteel/blast"
+	"darksteel/conf"
+	"darksteel/kerberos"
+	"darksteel/ldap"
 	"flag"
 	"fmt"
 	"os"
-	"tdk/blast"
-	"tdk/conf"
-	"tdk/kerberos"
-	"tdk/ldap"
 )
 
 var (

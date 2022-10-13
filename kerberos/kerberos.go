@@ -1,10 +1,10 @@
 package kerberos
 
 import (
+	"darksteel/process"
 	"fmt"
 	"github.com/go-ldap/ldap/v3"
 	"log"
-	"tdk/process"
 )
 
 var KosListDomain string

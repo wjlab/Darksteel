@@ -1,10 +1,10 @@
 package ldap
 
 import (
+	"darksteel/process"
 	"fmt"
 	"github.com/go-ldap/ldap/v3"
 	"log"
-	"tdk/process"
 )
 
 func LdapInit(domain string, target string, password string, user string, allDelegate string, searchValue string, integrate string, outputContent string, ldapSizeLimit int, outputFile string, allLdap bool, fuzz string) {

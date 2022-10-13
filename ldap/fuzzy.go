@@ -1,11 +1,11 @@
 package ldap
 
 import (
+	"darksteel/conf"
+	"darksteel/process"
 	"fmt"
 	"github.com/go-ldap/ldap/v3"
 	"strings"
-	"tdk/conf"
-	"tdk/process"
 )
 
 func Fuzzy(l **ldap.Conn, domain string, ldapSizeLimit int, outputFile string, fuzzName string) {

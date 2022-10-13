@@ -1,4 +1,4 @@
-module tdk
+module darksteel
 
 go 1.18
 
