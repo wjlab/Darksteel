@@ -42,7 +42,7 @@ type MyFlagSet struct {
 }
 
 func main() {
-	// TODO 本地账号认证
+	// 6 本地账号认证
 	// ldap
 	ldapCmd := &MyFlagSet{
 		FlagSet:    flag.NewFlagSet("ldap", flag.ExitOnError),
@@ -106,9 +106,9 @@ func main() {
 	useAge := func() {
 		conf.Banner()
 		fmt.Println("Available Commands:")
-		fmt.Println("  tdk ldap [parameter]")
-		fmt.Println("  tdk kerberos [parameter]")
-		fmt.Println("  tdk blast [parameter]\n")
+		fmt.Println("  darksteel ldap [parameter]")
+		fmt.Println("  darksteel kerberos [parameter]")
+		fmt.Println("  darksteel blast [parameter]\n")
 		for _, v := range subcommands {
 			fmt.Printf("%s %s\n", v.Name(), v.cmdComment)
 			v.PrintDefaults() // 使用 flag 库自带的格式输出子命令的选项帮助信息
