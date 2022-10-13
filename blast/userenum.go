@@ -1,0 +1,58 @@
+package blast
+
+import (
+	"bufio"
+	"fmt"
+	"github.com/ropnop/kerbrute/util"
+	"os"
+	"sync"
+	"time"
+)
+
+func UserEnum(domain string, userNameList string, threads int, verbose bool, outFileName string) {
+	usersChan := make(chan string, threads)
+	defer cancel()
+
+	var wg sync.WaitGroup
+	wg.Add(threads)
+
+	var scanner *bufio.Scanner
+
+	file, err := os.Open(userNameList)
+	if err != nil {
+		fmt.Printf("Error! %s\n", err)
+		return
+	}
+	defer file.Close()
+	scanner = bufio.NewScanner(file)
+
+	for i := 0; i < threads; i++ {
+		go makeEnumWorker(ctx, usersChan, &wg, verbose, outFileName, domain)
+	}
+
+	start := time.Now()
+
+Scan:
+	for scanner.Scan() {
+		select {
+		case <-ctx.Done():
+			break Scan
+		default:
+			userNameLine := scanner.Text()
+			username, err := util.FormatUsername(userNameLine)
+			if err != nil {
+				fmt.Printf("Error! %s\n", err)
+				continue
+			}
+			usersChan <- username
+		}
+	}
+	close(usersChan)
+	wg.Wait()
+
+	fmt.Printf("Done! Tested logins in %.3f seconds", time.Since(start).Seconds())
+
+	if err := scanner.Err(); err != nil {
+		fmt.Printf("Error! %s\n", err)
+	}
+}
