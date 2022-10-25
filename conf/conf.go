@@ -20,21 +20,27 @@ func Banner() {
 	fmt.Println("   v1.0.2\n")
 }
 
-var Ldap_queries = map[string]string{
-	"users":                   "(objectClass=user)",
-	"computers":               "(objectClass=Computer)",
-	"dc":                      "(&(objectCategory=Computer)(userAccountControl:1.2.840.113556.1.4.803:=8192))",
-	"spn":                     "(&(servicePrincipalName=*))",
-	"unconstrained_users":     "(&(samAccountType=805306368)(userAccountControl:1.2.840.113556.1.4.803:=524288))",
-	"unconstrained_computers": "(&(samAccountType=805306369)(userAccountControl:1.2.840.113556.1.4.803:=524288))",
-	"constrained_computers":   "(&(samAccountType=805306369)(msds-allowedtodelegateto=*))",
-	"constrained_users":       "(&(samAccountType=805306368)(msds-allowedtodelegateto=*))",
-	"ms_sql":                  "(&(objectCategory=computer)(servicePrincipalName=MSSQLSvc*))",
-	"ou":                      "(&(objectCategory=organizationalUnit)(ou=*))",
-	"asreproast":              "(&(UserAccountControl:1.2.840.113556.1.4.803:=4194304)(!(UserAccountControl:1.2.840.113556.1.4.803:=2))(!(objectCategory=computer)))",
-	"kerberoasting":           "(&(!(UserAccountControl:1.2.840.113556.1.4.803:=2))(samAccountType=805306368)(servicePrincipalName=*)(!samAccountName=krbtgt))",
-	"fuzzy":                   "(description=*)",
-	"survivalComputer":        "(&(objectcategory=computer)(!(useraccountcontrol:1.2.840.113556.1.4.803:=2))(pwdlastset>=131932198595370000)(|(!lastlogontimestamp=*)(&(lastlogontimestamp=*)(lastlogontimestamp>=131932198595370000))))",
+var LdapQueries = map[string]string{
+	"users":                          "(objectClass=user)",
+	"computers":                      "(objectClass=Computer)",
+	"dc":                             "(&(objectCategory=Computer)(userAccountControl:1.2.840.113556.1.4.803:=8192))",
+	"spn":                            "(&(servicePrincipalName=*))",
+	"unconstrained_users":            "(&(samAccountType=805306368)(userAccountControl:1.2.840.113556.1.4.803:=524288))",
+	"unconstrained_computers":        "(&(samAccountType=805306369)(userAccountControl:1.2.840.113556.1.4.803:=524288))",
+	"constrained_computers":          "(&(samAccountType=805306369)(msds-allowedtodelegateto=*))",
+	"constrained_users":              "(&(samAccountType=805306368)(msds-allowedtodelegateto=*))",
+	"ms_sql":                         "(&(objectCategory=computer)(servicePrincipalName=MSSQLSvc*))",
+	"ou":                             "(&(objectCategory=organizationalUnit)(ou=*))",
+	"asreproast":                     "(&(UserAccountControl:1.2.840.113556.1.4.803:=4194304)(!(UserAccountControl:1.2.840.113556.1.4.803:=2))(!(objectCategory=computer)))",
+	"kerberoasting":                  "(&(!(UserAccountControl:1.2.840.113556.1.4.803:=2))(samAccountType=805306368)(servicePrincipalName=*)(!samAccountName=krbtgt))",
+	"fuzzy":                          "(description=*)",
+	"survivalComputer":               "(&(objectcategory=computer)(!(useraccountcontrol:1.2.840.113556.1.4.803:=2))(pwdlastset>=131932198595370000)(|(!lastlogontimestamp=*)(&(lastlogontimestamp=*)(lastlogontimestamp>=131932198595370000))))",
+	"admins":                         "(&(sAMAccountName=Domain Admins))",
+	"enterprises":                    "(&(sAMAccountName=Enterprise Admins))",
+	"exchangeComputer":               "(&(objectClass=group)(cn=Exchange Servers))",
+	"exchangeTrustedSubsystem":       "(&(objectClass=group)(cn=Exchange Trusted Subsystem))",
+	"exchangeOrganizationManagement": "(&(objectClass=group)(cn=Organization Management))",
+	"trustDomain":                    "(&(objectClass=trustedDomain))",
 }
 
 var supportedETypeMapping = map[string]int32{

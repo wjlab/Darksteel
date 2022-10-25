@@ -20,7 +20,7 @@ func Fuzzy(l **ldap.Conn, domain string, ldapSizeLimit int, outputFile string, f
 		ldapSizeLimit,
 		0,
 		false,
-		conf.Ldap_queries["fuzzy"],
+		conf.LdapQueries["fuzzy"],
 		[]string{"description"},
 		nil)
 	user, err := (*l).Search(searchFuzz)

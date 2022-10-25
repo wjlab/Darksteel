@@ -15,7 +15,7 @@ func SearchRoast(l **ldap.Conn, domain string, ldapSizeLimit int, outputFile str
 		ldapSizeLimit,
 		0,
 		false,
-		conf.Ldap_queries["asreproast"],
+		conf.LdapQueries["asreproast"],
 		[]string{"sAMAccountName"},
 		nil)
 	user, err := (*l).Search(searchRoast)

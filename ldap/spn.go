@@ -16,7 +16,7 @@ func SearchSpn(l **ldap.Conn, domain string, ldapSizeLimit int, outputFile strin
 		ldapSizeLimit,
 		0,
 		false,
-		conf.Ldap_queries["spn"],
+		conf.LdapQueries["spn"],
 		[]string{"dn", "cn", "servicePrincipalName"},
 		nil)
 	spnName, err := (*l).Search(searchSpn)

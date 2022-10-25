@@ -15,7 +15,7 @@ func SearchComputers(l **ldap.Conn, domain string, ldapSizeLimit int, outputFile
 		ldapSizeLimit,
 		0,
 		false,
-		conf.Ldap_queries["computers"],
+		conf.LdapQueries["computers"],
 		[]string{"name"},
 		nil)
 	searchComputer, err := (*l).Search(searchComputers)

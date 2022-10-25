@@ -15,7 +15,7 @@ func SearchUsers(l **ldap.Conn, domain string, ldapSizeLimit int, outputFile str
 		ldapSizeLimit,
 		0,
 		false,
-		conf.Ldap_queries["users"],
+		conf.LdapQueries["users"],
 		[]string{"sAMAccountName"},
 		nil)
 	user, err := (*l).Search(searchUsers)

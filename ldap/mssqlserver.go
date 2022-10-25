@@ -15,7 +15,7 @@ func SearchMsSqlServer(l **ldap.Conn, domain string, ldapSizeLimit int, outputFi
 		ldapSizeLimit,
 		0,
 		false,
-		conf.Ldap_queries["ms_sql"],
+		conf.LdapQueries["ms_sql"],
 		[]string{"name"},
 		nil)
 	user, err := (*l).Search(searchMsSqlServer)

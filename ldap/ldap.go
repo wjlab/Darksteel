@@ -80,14 +80,38 @@ func LdapInit(domain string, target string, password string, user string, allDel
 	case integrate == "scomputer":
 		SearchSurvivalComputer(&l, listDomain, ldapSizeLimit, outputFile)
 		break
+	case integrate == "admins":
+		SearchAdmins(&l, listDomain, ldapSizeLimit, outputFile)
+		break
+	case integrate == "enterprise":
+		SearchEnterprise(&l, listDomain, ldapSizeLimit, outputFile)
+		break
+	case integrate == "exchangecomputer":
+		SearchExchangeComputer(&l, listDomain, ldapSizeLimit, outputFile)
+		break
+	case integrate == "exchangesystem":
+		SearchExchangeTrustedSubsystem(&l, listDomain, ldapSizeLimit, outputFile)
+		break
+	case integrate == "exchangeorgmanager":
+		SearchExchangeOrganizationManagement(&l, listDomain, ldapSizeLimit, outputFile)
+		break
+	case integrate == "trustdomain":
+		SearchTrustDomain(&l, listDomain, ldapSizeLimit, outputFile)
+		break
 	case allLdap:
 		SearchUsers(&l, listDomain, ldapSizeLimit, outputFile)
+		SearchAdmins(&l, listDomain, ldapSizeLimit, outputFile)
+		SearchEnterprise(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchOU(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchMsSqlServer(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchMaq(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchDc(&l, listDomain, ldapSizeLimit, outputFile)
+		SearchTrustDomain(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchComputers(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchSurvivalComputer(&l, listDomain, ldapSizeLimit, outputFile)
+		SearchExchangeComputer(&l, listDomain, ldapSizeLimit, outputFile)
+		SearchExchangeTrustedSubsystem(&l, listDomain, ldapSizeLimit, outputFile)
+		SearchExchangeOrganizationManagement(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchRoast(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchUnconstrained(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchConstrained(&l, listDomain, ldapSizeLimit, outputFile)

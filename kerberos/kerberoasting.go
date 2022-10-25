@@ -113,7 +113,7 @@ func Kerberoasting(l **ldap.Conn, domain string, dcIp string, targetSpnName stri
 			ldapSizeLimit,
 			0,
 			false,
-			conf.Ldap_queries["kerberoasting"],
+			conf.LdapQueries["kerberoasting"],
 			[]string{"sAMAccountName", "servicePrincipalName", "distinguishedName"},
 			nil)
 		kerberoastUser, err := (*l).Search(SearchKerberoast)

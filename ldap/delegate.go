@@ -37,7 +37,7 @@ func SearchUnconstrained(l **ldap.Conn, domain string, ldapSizeLimit int, output
 		ldapSizeLimit,
 		0,
 		false,
-		conf.Ldap_queries["unconstrained_computers"],
+		conf.LdapQueries["unconstrained_computers"],
 		[]string{"dn", "cn"},
 		nil)
 	computerUnconstraint, err := (*l).Search(computerUnconstrained)
@@ -72,7 +72,7 @@ func SearchUnconstrained(l **ldap.Conn, domain string, ldapSizeLimit int, output
 		ldapSizeLimit,
 		0,
 		false,
-		conf.Ldap_queries["unconstrained_users"],
+		conf.LdapQueries["unconstrained_users"],
 		[]string{"dn", "cn"},
 		nil)
 	userUnconstraint, err := (*l).Search(userUnconstrained)
@@ -111,7 +111,7 @@ func SearchConstrained(l **ldap.Conn, domain string, ldapSizeLimit int, outputFi
 		ldapSizeLimit,
 		0,
 		false,
-		conf.Ldap_queries["constrained_computers"],
+		conf.LdapQueries["constrained_computers"],
 		[]string{"dn", "cn", "msDS-AllowedToDelegateTo"},
 		nil)
 	computerConstraint, err := (*l).Search(computerConstrained)
@@ -153,7 +153,7 @@ func SearchConstrained(l **ldap.Conn, domain string, ldapSizeLimit int, outputFi
 		ldapSizeLimit,
 		0,
 		false,
-		conf.Ldap_queries["constrained_users"],
+		conf.LdapQueries["constrained_users"],
 		[]string{"dn", "cn", "msDS-AllowedToDelegateTo"},
 		nil)
 	userConstraint, err := (*l).Search(userConstrained)

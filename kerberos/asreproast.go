@@ -43,7 +43,7 @@ func AsrepRoast(l **ldap.Conn, domain string, dcIp string, targetUser string, fo
 			ldapSizeLimit,
 			0,
 			false,
-			conf.Ldap_queries["asreproast"],
+			conf.LdapQueries["asreproast"],
 			[]string{"sAMAccountName"},
 			nil)
 		roastUser, err := (*l).Search(SearchRoast)

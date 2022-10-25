@@ -42,7 +42,7 @@ type MyFlagSet struct {
 }
 
 func main() {
-	// 6 本地账号认证
+	// 本地账号认证
 	// ldap
 	ldapCmd := &MyFlagSet{
 		FlagSet:    flag.NewFlagSet("ldap", flag.ExitOnError),
@@ -55,7 +55,7 @@ func main() {
 	ldapCmd.StringVar(&allDelegate, "w", "", "all \n  all delegate information \nuw \n  unconstrained delegation information \ncw \n  Constraint appointment information \nbw \n  Resource-based constraint delegation")
 	ldapCmd.StringVar(&searchValue, "f", "", "Customize the field of LDAP")
 	ldapCmd.StringVar(&outputContent, "n", "", "The field to query, you can write multiple")
-	ldapCmd.StringVar(&integrate, "m", "", "user \n  Query all users in the domain \ncomputer \n  Query all computers in the domain \nscomputer \n  Query survival computer \ndc \n  Query all domain controls in the domain \nspn \n  Query all SPN in the domain \nou \n  All OU in the query domain \nmssql \n  Query all mssql services in the domain \nasreproast \n  Query users in the domain who can use as-rep roast \nmaq \n  Query the value of maq in the domain")
+	ldapCmd.StringVar(&integrate, "m", "", "user \n  Query all users in the domain \ncomputer \n  Query all computers in the domain \nscomputer \n  Query survival computer \ndc \n  Query all domain controls in the domain \nspn \n  Query all SPN in the domain \nou \n  All OU in the query domain \nmssql \n  Query all mssql services in the domain \nasreproast \n  Query users in the domain who can use as-rep roast \nmaq \n  Query the value of maq in the domain\nadmins \n  Query domain admins\nenterprise \n  Query enterprise admins\nexchangecomputer \n  Query exchange computers\nexchangesystem \n  Query Exchange Trusted Subsystem\nexchangeorgmanager \n  Query Exchange Organization Management\ntrustdomain \n  Query Trust Domain")
 	ldapCmd.IntVar(&ldapSizeLimit, "ldapSizeLimit", 0, "Query LDAP maximum number (default 0)")
 	ldapCmd.StringVar(&outputFile, "o", "", "Output file position, default current directory")
 	ldapCmd.BoolVar(&allLdap, "all", false, "Query all content")

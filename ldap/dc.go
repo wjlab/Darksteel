@@ -15,7 +15,7 @@ func SearchDc(l **ldap.Conn, domain string, ldapSizeLimit int, outputFile string
 		ldapSizeLimit,
 		0,
 		false,
-		conf.Ldap_queries["dc"],
+		conf.LdapQueries["dc"],
 		[]string{"name"},
 		nil)
 	user, err := (*l).Search(searchDc)

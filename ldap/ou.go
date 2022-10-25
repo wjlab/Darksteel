@@ -15,7 +15,7 @@ func SearchOU(l **ldap.Conn, domain string, ldapSizeLimit int, outputFile string
 		ldapSizeLimit,
 		0,
 		false,
-		conf.Ldap_queries["ou"],
+		conf.LdapQueries["ou"],
 		[]string{"name"},
 		nil)
 	user, err := (*l).Search(searchOU)
