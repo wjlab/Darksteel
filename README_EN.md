@@ -22,14 +22,43 @@ Blast Domain Users
   \ \ \_\ \ \ \/\ \ \ \\ \\ \ \\`\  /\ \L\ \ \ \ \ \ \ \L\ \ \ \L\ \ \ \L\ \ 
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
-    
-   v1.0.2
 
+   v1.0.2
 
 Available Commands:
   darksteel ldap [parameter]
   darksteel kerberos [parameter]
   darksteel blast [parameter]
+
+blast Blasting Domain User
+  -dc string
+        * Please enter the IP of the domain control
+  -domain string
+        * Please enter the domain name
+  -m string
+        userenum -userfile user.txt
+          User enumeration
+        passspray -userfile user.txt -pass password
+          Password spraying
+        blastpass -user username -passfile password.txt
+          Single user burst password
+        userpass -upfile userpass.txt
+          User password combinations explode
+  -o string
+        Output file position, default current directory
+  -pass string
+        Password in the domain
+  -passfile string
+        Password dictionary
+  -t int
+        Number of burst threads (default 20)
+  -upfile string
+        The dictionary corresponding to the user name and password is split by:
+  -user string
+        Username in the domain
+  -userfile string
+        User dictionary
+  -v    Whether a failure message is displayed
 
 ldap Interact with LDAP server
   -all
@@ -63,6 +92,18 @@ ldap Interact with LDAP server
           Query users in the domain who can use as-rep roast 
         maq 
           Query the value of maq in the domain
+        admins 
+          Query domain admins
+        enterprise 
+          Query enterprise admins
+        exchangecomputer 
+          Query exchange computers
+        exchangesystem 
+          Query Exchange Trusted Subsystem
+        exchangeorgmanager 
+          Query Exchange Organization Management
+        trustdomain 
+          Query Trust Domain
   -n string
         The field to query, you can write multiple
   -o string
@@ -107,37 +148,6 @@ kerberos Do some Kerberos stuff
         Enter the user to be utilized
   -user string
         * Username in the domain
-
-blast Blasting Domain User
-  -dc string
-        * Please enter the IP of the domain control
-  -domain string
-        * Please enter the domain name
-  -m string
-        userenum -userfile user.txt
-          User enumeration
-        passspray -userfile user.txt -pass password
-          Password spraying
-        blastpass -user username -passfile password.txt
-          Single user burst password
-        userpass -upfile userpass.txt
-          User password combinations explode
-  -o string
-        Output file position, default current directory
-  -pass string
-        Password in the domain
-  -passfile string
-        Password dictionary
-  -t int
-        Number of burst threads (default 20)
-  -upfile string
-        The dictionary corresponding to the user name and password is split by:
-  -user string
-        Username in the domain
-  -userfile string
-        User dictionary
-  -v    Whether a failure message is displayed
-
 ```
 # Usage Examples
 ## Ldap
