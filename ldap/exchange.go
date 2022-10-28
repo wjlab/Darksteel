@@ -28,7 +28,9 @@ func SearchExchangeComputer(l **ldap.Conn, domain string, ldapSizeLimit int, out
 			listExchangeComputers = append(listExchangeComputers, j)
 		}
 	}
-	listExchangeComputers = listExchangeComputers[1:]
+	if len(listExchangeComputers) > 1 {
+		listExchangeComputers = listExchangeComputers[1:]
+	}
 	if len(outputFile) != 0 {
 		process.OutFile("[*] Exchange Servers:\n", outputFile)
 		for _, j := range listExchangeComputers {
