@@ -17,7 +17,7 @@ func Banner() {
 	fmt.Println("  \\ \\ \\_\\ \\ \\ \\/\\ \\ \\ \\\\ \\\\ \\ \\\\`\\  /\\ \\L\\ \\ \\ \\ \\ \\ \\ \\L\\ \\ \\ \\L\\ \\ \\ \\L\\ \\ ")
 	fmt.Println("   \\ \\____/\\ \\_\\ \\_\\ \\_\\ \\_\\ \\_\\ \\_\\\\ `\\____\\ \\ \\_\\ \\ \\____/\\ \\____/\\ \\____/  ")
 	fmt.Println("    \\/___/  \\/_/\\/_/\\/_/\\/ /\\/_/\\/_/ \\/_____/  \\/_/  \\/___/  \\/___/  \\/___/   \n")
-	fmt.Println("   v1.0.2\n")
+	fmt.Println("   v1.0.5\n")
 }
 
 var LdapQueries = map[string]string{
@@ -41,6 +41,8 @@ var LdapQueries = map[string]string{
 	"exchangeTrustedSubsystem":       "(&(objectClass=group)(cn=Exchange Trusted Subsystem))",
 	"exchangeOrganizationManagement": "(&(objectClass=group)(cn=Organization Management))",
 	"trustDomain":                    "(&(objectClass=trustedDomain))",
+	"adminSDHolder":                  "(&(objectcategory=person)(samaccountname=*)(admincount=1))",
+	"sIDHistory":                     "(&(sIDHistory=*))",
 }
 
 var supportedETypeMapping = map[string]int32{

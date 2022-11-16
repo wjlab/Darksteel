@@ -98,9 +98,17 @@ func LdapInit(domain string, target string, password string, user string, allDel
 	case integrate == "trustdomain":
 		SearchTrustDomain(&l, listDomain, ldapSizeLimit, outputFile)
 		break
+	case integrate == "adminsdholder":
+		SearchAdminSDHolder(&l, listDomain, ldapSizeLimit, outputFile)
+		break
+	case integrate == "sidhistory":
+		SearchSIDHistory(&l, listDomain, ldapSizeLimit, outputFile)
+		break
 	case allLdap:
 		SearchUsers(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchAdmins(&l, listDomain, ldapSizeLimit, outputFile)
+		SearchAdminSDHolder(&l, listDomain, ldapSizeLimit, outputFile)
+		SearchSIDHistory(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchEnterprise(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchOU(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchMsSqlServer(&l, listDomain, ldapSizeLimit, outputFile)
