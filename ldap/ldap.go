@@ -104,6 +104,18 @@ func LdapInit(domain string, target string, password string, user string, allDel
 	case integrate == "sidhistory":
 		SearchSIDHistory(&l, listDomain, ldapSizeLimit, outputFile)
 		break
+	case integrate == "cacomputer":
+		SearchCaComputer(&l, listDomain, ldapSizeLimit, outputFile)
+		break
+	case integrate == "esc1":
+		SearchEsc1(&l, listDomain, ldapSizeLimit, outputFile)
+		break
+	case integrate == "esc2":
+		SearchEsc2(&l, listDomain, ldapSizeLimit, outputFile)
+		break
+	case integrate == "computerip":
+		SearchComputerIps(&l, domain, listDomain, ldapSizeLimit, target, outputFile)
+		break
 	case allLdap:
 		SearchUsers(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchAdmins(&l, listDomain, ldapSizeLimit, outputFile)
@@ -111,6 +123,8 @@ func LdapInit(domain string, target string, password string, user string, allDel
 		SearchSIDHistory(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchEnterprise(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchOU(&l, listDomain, ldapSizeLimit, outputFile)
+		SearchCaComputer(&l, listDomain, ldapSizeLimit, outputFile)
+		SearchEsc1(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchMsSqlServer(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchMaq(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchDc(&l, listDomain, ldapSizeLimit, outputFile)

@@ -27,12 +27,13 @@ blast
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
 
-   v1.0.5
+   v1.0.6
 
 Available Commands:
   darksteel ldap [parameter]
   darksteel kerberos [parameter]
   darksteel blast [parameter]
+  darksteel computerip [parameter]
 
 ldap Interact with LDAP server
   -all
@@ -82,6 +83,14 @@ ldap Interact with LDAP server
           Query the user whose permission is set for AdminSDHolder
         sidhistory 
           Query the users who have set SIDHistory
+        cacomputer 
+          Query adcs
+        esc1 
+          Template that is threatened by esc1
+        esc2 
+          Template that is threatened by esc2
+        computerip 
+          Query the ip address of the computer in the domain
   -n string
         The field to query, you can write multiple
   -o string
@@ -156,6 +165,20 @@ blast Blasting Domain User
   -userfile string
         User dictionary
   -v    Whether a failure message is displayed
+
+computerip Query the ip address of the computer in the domain
+  -dc string
+        * Please enter the IP of the domain control
+  -domain string
+        * Please enter the domain name
+  -ldapSizeLimit int
+        Query LDAP maximum number (default 0)
+  -o string
+        Output file position, default current directory
+  -pass string
+        * Password in the domain
+  -user string
+        * Username in the domain
 
 ```
 # 使用实例

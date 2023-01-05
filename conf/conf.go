@@ -17,7 +17,7 @@ func Banner() {
 	fmt.Println("  \\ \\ \\_\\ \\ \\ \\/\\ \\ \\ \\\\ \\\\ \\ \\\\`\\  /\\ \\L\\ \\ \\ \\ \\ \\ \\ \\L\\ \\ \\ \\L\\ \\ \\ \\L\\ \\ ")
 	fmt.Println("   \\ \\____/\\ \\_\\ \\_\\ \\_\\ \\_\\ \\_\\ \\_\\\\ `\\____\\ \\ \\_\\ \\ \\____/\\ \\____/\\ \\____/  ")
 	fmt.Println("    \\/___/  \\/_/\\/_/\\/_/\\/ /\\/_/\\/_/ \\/_____/  \\/_/  \\/___/  \\/___/  \\/___/   \n")
-	fmt.Println("   v1.0.5\n")
+	fmt.Println("   v1.0.6\n")
 }
 
 var LdapQueries = map[string]string{
@@ -43,6 +43,9 @@ var LdapQueries = map[string]string{
 	"trustDomain":                    "(&(objectClass=trustedDomain))",
 	"adminSDHolder":                  "(&(objectcategory=person)(samaccountname=*)(admincount=1))",
 	"sIDHistory":                     "(&(sIDHistory=*))",
+	"caComputer":                     "(&(objectCategory=pKIEnrollmentService))",
+	"esc1":                           "(&(objectclass=pkicertificatetemplate)(!(mspki-enrollment-flag:1.2.840.113556.1.4.804:=2))(|(mspki-ra-signature=0)(!(mspki-ra-signature=*)))(|(pkiextendedkeyusage=1.3.6.1.4.1.311.20.2.2)(pkiextendedkeyusage=1.3.6.1.5.5.7.3.2)(pkiextendedkeyusage=1.3.6.1.5.2.3.4)(pkiextendedkeyusage=2.5.29.37.0)(!(pkiextendedkeyusage=*)))(mspki-certificate-name-flag:1.2.840.113556.1.4.804:=1)(!(cn=OfflineRouter))(!(cn=CA))(!(cn=SubCA)))",
+	"esc2":                           "(&(objectclass=pkicertificatetemplate)(!(mspki-enrollment-flag:1.2.840.113556.1.4.804:=2))(|(mspki-ra-signature=0)(!(mspki-ra-signature=*)))(|(pkiextendedkeyusage=2.5.29.37.0)(!(pkiextendedkeyusage=*)))(!(cn=CA))(!(cn=SubCA)))",
 }
 
 var supportedETypeMapping = map[string]int32{
