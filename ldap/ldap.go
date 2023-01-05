@@ -125,6 +125,7 @@ func LdapInit(domain string, target string, password string, user string, allDel
 		SearchOU(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchCaComputer(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchEsc1(&l, listDomain, ldapSizeLimit, outputFile)
+		SearchEsc2(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchMsSqlServer(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchMaq(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchDc(&l, listDomain, ldapSizeLimit, outputFile)
