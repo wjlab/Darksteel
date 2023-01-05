@@ -16,11 +16,11 @@ darksteel.exe computerip -domain test.com -dc 192.168.1.1 -user user -pass passw
    v1.0.6
 
 [*] Computer correspondence iP:
-        WIN-KQHTFQSIJSH  ————> type A: 192.168.1.1
-        DESKTOP-A58D722  ————> type A: 192.168.1.1
-        DESKTOP-DO1D913  ————> type A: 192.168.1.1
-        WIN-9UI852PL  ————> type A: 192.168.1.1
-        EXCHANGESERVER  ————> type A: 192.168.1.1
+        WIN-KQHTFQSIJSH  ————> A: 192.168.1.1
+        DESKTOP-A58D722  ————> A: 192.168.1.1
+        DESKTOP-DO1D913  ————> A: 192.168.1.1
+        WIN-9UI852PL  ————> A: 192.168.1.1
+        EXCHANGESERVER  ————> A: 192.168.1.1
 ```
 ### Features
 ```
