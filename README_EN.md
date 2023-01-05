@@ -1,8 +1,28 @@
 # Darksteel
 # Introduction
 Darksteel is a tool for automated information gathering and exploitation in the domain. In the penetration found that separate collection of information within the domain is tedious, vulnerability exploitation also requires a lot of tools, so the completion of this project to help me solve the problem of tedious collection of information within the domain and vulnerability exploitation problems. This project is completed with the main purpose of circumventing detection, the exploitation of direct attacks on the domain control is not done, because if there is a device will generate a large number of alerts, and subsequently may add the exploitation of bypass detection.
-### Features
+### New Features Demo
+```
+darksteel.exe computerip -domain test.com -dc 192.168.1.1 -user user -pass password(hash)
 
+ ____    ______  ____    __  __   ____    ______  ____    ____    __       
+/\  _`\ /\  _  \/\  _`\ /\ \/\ \ /\  _`\ /\__  _\/\  _`\ /\  _`\ /\ \      
+\ \ \/\ \ \ \L\ \ \ \L\ \ \ \/'/'\ \,\L\_\/_/\ \/\ \ \L\_\ \ \L\_\ \ \    
+ \ \ \ \ \ \  __ \ \ ,  /\ \ , <  \/_\__ \  \ \ \ \ \  _\L\ \  _\L\ \ \  _
+  \ \ \_\ \ \ \/\ \ \ \\ \\ \ \\`\  /\ \L\ \ \ \ \ \ \ \L\ \ \ \L\ \ \ \L\ \ 
+   \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
+    \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
+
+   v1.0.6
+
+[*] Computer correspondence iP:
+        WIN-KQHTFQSIJSH  ————> type A: 192.168.1.1
+        DESKTOP-A58D722  ————> type A: 192.168.1.1
+        DESKTOP-DO1D913  ————> type A: 192.168.1.1
+        WIN-9UI852PL  ————> type A: 192.168.1.1
+        EXCHANGESERVER  ————> type A: 192.168.1.1
+```
+### Features
 ```
 ldap
 When we have a domain password (hash), we can use ldap to gather useful information about the domain, such as spn, delegate, surviving computers, etc.
@@ -12,6 +32,9 @@ Exploit for kerberos vulnerability
 
 blast
 Blast Domain Users
+
+computerip
+Batch query the ip of the computer in the domain
 ```
 
 ```

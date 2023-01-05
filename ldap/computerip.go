@@ -70,11 +70,11 @@ func SearchComputerIps(l **ldap.Conn, domain string, listDomain string, ldapSize
 			for _, ans := range r.Answer {
 				record, isType := ans.(*dns.A)
 				if isType {
-					fmt.Println("\t"+j+"  ————> type A:", record.A)
+					fmt.Println("\t"+j+"  ————> A:", record.A)
 				}
 				record1, isType := ans.(*dns.CNAME)
 				if isType {
-					fmt.Println("\t"+j+"  ————> type cname:", record1.Target)
+					fmt.Println("\t"+j+"  ————> cname:", record1.Target)
 				}
 			}
 		}
