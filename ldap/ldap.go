@@ -2,7 +2,6 @@ package ldap
 
 import (
 	"darksteel/process"
-	"fmt"
 	"github.com/go-ldap/ldap/v3"
 	"log"
 )
@@ -20,12 +19,9 @@ func LdapInit(domain string, target string, password string, user string, allDel
 
 	//判断hash验证
 	if len(password) != 32 {
-		_, err = l.SimpleBind(&ldap.SimpleBindRequest{
-			Username: fmt.Sprintf("CN=%s,cn=Users,%s", user, listDomain),
-			Password: password,
-		})
+		err = l.Bind(user, password)
 		if err != nil {
-			log.Fatalf("Failed to bind: %s\n", err)
+			log.Fatal(err)
 		}
 	} else {
 		err = l.NTLMBindWithHash(target, user, password)

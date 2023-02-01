@@ -5,7 +5,7 @@ Darksteel is a tool for automated information gathering and exploitation in the 
 ```
 darksteel.exe computerip -domain test.com -dc 192.168.1.1 -user user -pass password(hash)
 
- ____    ______  ____    __  __   ____    ______  ____    ____    __       
+ ____    ______  ____    __  __   ____    ______  ____    ____    __   
 /\  _`\ /\  _  \/\  _`\ /\ \/\ \ /\  _`\ /\__  _\/\  _`\ /\  _`\ /\ \      
 \ \ \/\ \ \ \L\ \ \ \L\ \ \ \/'/'\ \,\L\_\/_/\ \/\ \ \L\_\ \ \L\_\ \ \    
  \ \ \ \ \ \  __ \ \ ,  /\ \ , <  \/_\__ \  \ \ \ \ \  _\L\ \  _\L\ \ \  _
