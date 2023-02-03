@@ -18,11 +18,12 @@ func SearchOU(l **ldap.Conn, domain string, ldapSizeLimit int, outputFile string
 		conf.LdapQueries["ou"],
 		[]string{"name"},
 		nil)
-	user, err := (*l).Search(searchOU)
+	//user, err := (*l).Search(searchOU)
+	searchOUs, err := (*l).SearchWithPaging(searchOU, 10000)
 	if err != nil {
 		fmt.Println(err)
 	}
-	for _, entry := range user.Entries {
+	for _, entry := range searchOUs.Entries {
 		listOU = append(listOU, entry.GetAttributeValue("name"))
 	}
 	if len(outputFile) != 0 {

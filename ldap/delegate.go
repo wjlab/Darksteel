@@ -204,7 +204,8 @@ func SearchBasedConstraints(l **ldap.Conn, domain string, ldapSizeLimit int, out
 		[]string{"dn", "cn", "mS-DS-CreatorSID"},
 		nil,
 	)
-	computerResourceBasedConstraints, err := (*l).Search(resourceBasedConstraints)
+	//computerResourceBasedConstraints, err := (*l).Search(resourceBasedConstraints)
+	computerResourceBasedConstraints, err := (*l).SearchWithPaging(resourceBasedConstraints, 10000)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -228,7 +229,8 @@ func SearchBasedConstraints(l **ldap.Conn, domain string, ldapSizeLimit int, out
 				[]string{"cn"}, // Attributes []string
 				nil,
 			)
-			sr1, _ := (*l).Search(msDSConstraint)
+			//sr1, _ := (*l).Search(msDSConstraint)
+			sr1, _ := (*l).SearchWithPaging(msDSConstraint, 10000)
 			for _, j1 := range sr1.Entries {
 				for _, i1 := range j1.GetAttributeValues("cn") {
 					a := structResourceBasedConstraints{

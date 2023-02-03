@@ -19,7 +19,8 @@ func SearchSpn(l **ldap.Conn, domain string, ldapSizeLimit int, outputFile strin
 		conf.LdapQueries["spn"],
 		[]string{"dn", "cn", "servicePrincipalName"},
 		nil)
-	spnName, err := (*l).Search(searchSpn)
+	//spnName, err := (*l).Search(searchSpn)
+	spnName, err := (*l).SearchWithPaging(searchSpn, 10000)
 	if err != nil {
 		fmt.Println(err)
 	}

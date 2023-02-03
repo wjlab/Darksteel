@@ -18,11 +18,12 @@ func SearchMsSqlServer(l **ldap.Conn, domain string, ldapSizeLimit int, outputFi
 		conf.LdapQueries["ms_sql"],
 		[]string{"name"},
 		nil)
-	user, err := (*l).Search(searchMsSqlServer)
+	//user, err := (*l).Search(searchMsSqlServer)
+	searchMsSqlServers, err := (*l).SearchWithPaging(searchMsSqlServer, 10000)
 	if err != nil {
 		fmt.Println(err)
 	}
-	for _, entry := range user.Entries {
+	for _, entry := range searchMsSqlServers.Entries {
 		listMsSqlServer = append(listMsSqlServer, entry.GetAttributeValue("name"))
 	}
 	if len(outputFile) != 0 {

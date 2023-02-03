@@ -18,7 +18,8 @@ func SearchUsers(l **ldap.Conn, domain string, ldapSizeLimit int, outputFile str
 		conf.LdapQueries["users"],
 		[]string{"sAMAccountName"},
 		nil)
-	user, err := (*l).Search(searchUsers)
+	//user, err := (*l).Search(searchUsers)
+	user, err := (*l).SearchWithPaging(searchUsers, 10000)
 	if err != nil {
 		fmt.Println(err)
 	}

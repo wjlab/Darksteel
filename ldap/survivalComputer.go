@@ -22,7 +22,8 @@ func SearchSurvivalComputer(l **ldap.Conn, domain string, ldapSizeLimit int, out
 		conf.LdapQueries["survivalComputer"],
 		[]string{"cn", "operatingSystem"},
 		nil)
-	searchSurvival, err := (*l).Search(searchSurvivalComputer)
+	//searchSurvival, err := (*l).Search(searchSurvivalComputer)
+	searchSurvival, err := (*l).SearchWithPaging(searchSurvivalComputer, 10000)
 	if err != nil {
 		fmt.Println(err)
 	}

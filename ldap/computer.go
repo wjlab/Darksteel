@@ -18,7 +18,8 @@ func SearchComputers(l **ldap.Conn, domain string, ldapSizeLimit int, outputFile
 		conf.LdapQueries["computers"],
 		[]string{"name"},
 		nil)
-	searchComputer, err := (*l).Search(searchComputers)
+	//searchComputer, err := (*l).Search(searchComputers)
+	searchComputer, err := (*l).SearchWithPaging(searchComputers, 10000)
 	if err != nil {
 		fmt.Println(err)
 	}
