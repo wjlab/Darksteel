@@ -34,6 +34,7 @@ var (
 	threads       int
 	verbose       bool
 	userPass      string
+	file          string
 )
 
 type MyFlagSet struct {
@@ -55,7 +56,7 @@ func main() {
 	ldapCmd.StringVar(&allDelegate, "w", "", "all \n  all delegate information \nuw \n  unconstrained delegation information \ncw \n  Constraint appointment information \nbw \n  Resource-based constraint delegation")
 	ldapCmd.StringVar(&searchValue, "f", "", "Customize the field of LDAP")
 	ldapCmd.StringVar(&outputContent, "n", "", "The field to query, you can write multiple")
-	ldapCmd.StringVar(&integrate, "m", "", "user \n  Query all users in the domain \ncomputer \n  Query all computers in the domain \nscomputer \n  Query survival computer \ndc \n  Query all domain controls in the domain \nspn \n  Query all SPN in the domain \nou \n  All OU in the query domain \nmssql \n  Query all mssql services in the domain \nasreproast \n  Query users in the domain who can use as-rep roast \nmaq \n  Query the value of maq in the domain\nadmins \n  Query domain admins\nenterprise \n  Query enterprise admins\nexchangecomputer \n  Query exchange computers\nexchangesystem \n  Query Exchange Trusted Subsystem\nexchangeorgmanager \n  Query Exchange Organization Management\ntrustdomain \n  Query Trust Domain\nadminsdholder \n  Query the user whose permission is set for AdminSDHolder\nsidhistory \n  Query the users who have set SIDHistory\ncacomputer \n  Query adcs\nesc1 \n  Template that is threatened by esc1\nesc2 \n  Template that is threatened by esc2\ncomputerip \n  Query the ip address of the computer in the domain")
+	ldapCmd.StringVar(&integrate, "m", "", "user \n  Query all users in the domain \ncomputer \n  Query all computers in the domain \nscomputer \n  Query survival computer \ndc \n  Query all domain controls in the domain \nspn \n  Query all SPN in the domain \nou \n  All OU in the query domain \nmssql \n  Query all mssql services in the domain \nasreproast \n  Query users in the domain who can use as-rep roast \nmaq \n  Query the value of maq in the domain\nadmins \n  Query domain admins\nenterprise \n  Query enterprise admins\nexchangecomputer \n  Query exchange computers\nexchangesystem \n  Query Exchange Trusted Subsystem\nexchangeorgmanager \n  Query Exchange Organization Management\ntrustdomain \n  Query Trust Domain\nadminsdholder \n  Query the user whose permission is set for AdminSDHolder\nsidhistory \n  Query the users who have set SIDHistory\ncacomputer \n  Query adcs\nesc1 \n  Template that is threatened by esc1\nesc2 \n  Template that is threatened by esc2\ncomputerip \n  Query the ip address of the computer in the domain\nsddl \n  Query misconfigured acl")
 	ldapCmd.IntVar(&ldapSizeLimit, "ldapSizeLimit", 0, "Query LDAP maximum number (default 0)")
 	ldapCmd.StringVar(&outputFile, "o", "", "Output file position, default current directory")
 	ldapCmd.BoolVar(&allLdap, "all", false, "Query all content")
@@ -106,6 +107,7 @@ func main() {
 	computerIp.StringVar(&password, "pass", "", "* Password in the domain")
 	computerIp.StringVar(&outputFile, "o", "", "Output file position, default current directory")
 	computerIp.IntVar(&ldapSizeLimit, "ldapSizeLimit", 0, "Query LDAP maximum number (default 0)")
+	computerIp.StringVar(&file, "file", "", "Query the list of machine's corresponding IP addresses")
 
 	// 用 map 保存所有的二级子命令，方便快速查找
 	subcommands := map[string]*MyFlagSet{
@@ -169,11 +171,11 @@ func main() {
 			blast.SetupSession(domain, target, user, userFile, password, passwordFile, userPass, threads, blastModule, outputFile, verbose)
 		}
 	} else if os.Args[1] == "computerip" {
-		if len(os.Args) < 10 {
+		if len(os.Args) < 8 {
 			useAge()
 		} else {
 			conf.Banner()
-			ldap.LdapInit(domain, target, password, user, allDelegate, searchValue, "computerip", outputContent, ldapSizeLimit, outputFile, allLdap, fuzz)
+			ldap.LdapInit(domain, target, password, user, allDelegate, searchValue, "computerip", outputContent, ldapSizeLimit, outputFile, allLdap, file)
 		}
 	} else {
 		useAge()

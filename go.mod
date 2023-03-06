@@ -5,6 +5,7 @@ go 1.18
 require (
 	github.com/go-ldap/ldap/v3 v3.4.4
 	github.com/miekg/dns v1.1.50
+	github.com/pkg/errors v0.9.1
 	github.com/ropnop/gokrb5/v8 v8.0.0-20201111231119-729746023c02
 	github.com/ropnop/kerbrute v1.0.3
 	github.com/vincd/savoir v0.0.0-20220627104836-b75813d6a5fc

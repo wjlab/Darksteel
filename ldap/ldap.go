@@ -10,6 +10,33 @@ func LdapInit(domain string, target string, password string, user string, allDel
 	var listDomain string
 	listDomain = process.DcFormatConversion(domain)
 
+	//判断computerip
+	if integrate == "computerip" && len(fuzz) != 0 {
+		SearchComputerIps(nil, domain, listDomain, ldapSizeLimit, target, outputFile, fuzz)
+		return
+	} else if integrate == "computerip" && len(fuzz) == 0 {
+		//连接
+		l, err := ldap.DialURL("ldap://" + target + ":389")
+		if err != nil {
+			log.Fatal(err)
+		}
+		defer l.Close()
+
+		//判断hash验证
+		if len(password) != 32 {
+			err = l.Bind(user, password)
+			if err != nil {
+				log.Fatal(err)
+			}
+		} else {
+			err = l.NTLMBindWithHash(target, user, password)
+			if err != nil {
+				log.Fatalf("Failed to bind: %s\n", err)
+			}
+		}
+		SearchComputerIps(&l, domain, listDomain, ldapSizeLimit, target, outputFile, fuzz)
+		return
+	}
 	//连接
 	l, err := ldap.DialURL("ldap://" + target + ":389")
 	if err != nil {
@@ -109,8 +136,8 @@ func LdapInit(domain string, target string, password string, user string, allDel
 	case integrate == "esc2":
 		SearchEsc2(&l, listDomain, ldapSizeLimit, outputFile)
 		break
-	case integrate == "computerip":
-		SearchComputerIps(&l, domain, listDomain, ldapSizeLimit, target, outputFile)
+	case integrate == "sddl":
+		SearchSddl(&l, listDomain, ldapSizeLimit, outputFile)
 		break
 	case allLdap:
 		SearchUsers(&l, listDomain, ldapSizeLimit, outputFile)
@@ -125,6 +152,7 @@ func LdapInit(domain string, target string, password string, user string, allDel
 		SearchMsSqlServer(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchMaq(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchDc(&l, listDomain, ldapSizeLimit, outputFile)
+		SearchSddl(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchTrustDomain(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchComputers(&l, listDomain, ldapSizeLimit, outputFile)
 		SearchSurvivalComputer(&l, listDomain, ldapSizeLimit, outputFile)
