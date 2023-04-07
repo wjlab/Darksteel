@@ -24,7 +24,7 @@ func LdapInit(domain string, target string, password string, user string, allDel
 
 		//判断hash验证
 		if len(password) != 32 {
-			err = l.Bind(user, password)
+			err = l.Bind(user+"@"+domain, password)
 			if err != nil {
 				log.Fatal(err)
 			}
@@ -46,7 +46,7 @@ func LdapInit(domain string, target string, password string, user string, allDel
 
 	//判断hash验证
 	if len(password) != 32 {
-		err = l.Bind(user, password)
+		err = l.Bind(user+"@"+domain, password)
 		if err != nil {
 			log.Fatal(err)
 		}

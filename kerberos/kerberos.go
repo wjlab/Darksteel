@@ -46,7 +46,7 @@ func LdapCon(domain string, target string, password string, user string, roastMo
 
 	//判断hash验证
 	if len(password) != 32 {
-		err = l.Bind(user, password)
+		err = l.Bind(user+"@"+domain, password)
 		if err != nil {
 			log.Fatal(err)
 		}

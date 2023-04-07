@@ -16,7 +16,7 @@ darksteel.exe computerip -dc 192.168.1.1 -domain test.com -file 123.txt
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/
 
-   v1.0.7
+   v1.0.8
 
 [*] Computer correspondence iP:
         WIN-KQH5FQSIJSH  ————> A: 192.168.1.46
@@ -32,7 +32,7 @@ darksteel.exe ldap -dc 192.168.1.1 -domain test.com -user user -pass password(ha
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/
 
-   v1.0.7
+   v1.0.8
 
 [*] Acl :
         qt 完全控制 ------> ac
@@ -64,7 +64,7 @@ computerip
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/
 
-   v1.0.7
+   v1.0.8
 
 Available Commands:
   darksteel ldap [parameter]
@@ -235,7 +235,7 @@ darksteel.exe ldap -domain test.com -dc 192.168.1.1 -user user -pass password(ha
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
     
-   v1.0.7
+   v1.0.8
 
 
 [*] Domain User:
@@ -436,7 +436,7 @@ darksteel.exe ldap -domain test.com -dc 192.168.1.1 -user user -pass password(ha
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
     
-   v1.0.7
+   v1.0.8
 
 [*] CN=Administrators,CN=Builtin,DC=test,DC=com   --> 管理员对计算机/域有不受限制的完全访问权
 [*] CN=Schema Admins,CN=Users,DC=test,DC=com   --> 架构的指定系统管理员
@@ -456,7 +456,7 @@ darksteel.exe ldap -domain test.com -dc 192.168.1.1 -user user -pass password(ha
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
     
-   v1.0.7
+   v1.0.8
 
 DN: CN=WIN-KQH5FQSIJSH,OU=Domain Controllers,DC=test,DC=com
 cn: [WIN-KQH5FQSIJSH]
@@ -485,7 +485,7 @@ darksteel.exe kerberos -m asreproast -dc 192.168.1.1 -domain test.com -user user
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
     
-   v1.0.7
+   v1.0.8
 
 [*] Target domain: test.com (192.168.1.1)
 [*] Use LDAP to retreive vulnerable accounts
@@ -514,7 +514,7 @@ darksteel.exe kerberos  -m asreproast -dc 192.168.1.1 -domain test.com -tuser zz
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
     
-   v1.0.7
+   v1.0.8
 
 [*] Target domain: test.com (192.168.1.1)
 [*] Ask AS-Rep for user zz without pre-authentication
@@ -541,7 +541,7 @@ darksteel.exe kerberos -m kerberoast -dc 192.168.1.1 -domain test.com -user user
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
     
-   v1.0.7
+   v1.0.8
 
 
 [*] Target domain: test.com (192.168.1.1)
@@ -596,7 +596,7 @@ darksteel.exe blast -m userenum -dc 192.168.1.1 -domain test.com -userfile users
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
     
-   v1.0.7
+   v1.0.8
 
 
 [+] USERNAME:    zz@test.com
@@ -614,7 +614,7 @@ darksteel.exe blast -m userenum -dc 192.168.1.1 -domain test.com -userfile users
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
     
-   v1.0.7
+   v1.0.8
 
 
 [!] asdfqwadad@test.com - User does not exist
@@ -635,7 +635,7 @@ darksteel.exe blast -m passspray -dc 192.168.1.1 -domain test.com -userfile user
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
     
-   v1.0.7
+   v1.0.8
 
 
 [+] SUCCESS:     zz@test.com:123456
@@ -654,7 +654,7 @@ darksteel.exe blast -m blastpass -dc 192.168.1.1 -domain test.com -user zz -pass
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
     
-   v1.0.7
+   v1.0.8
 
 
 [+] SUCCESS:     zz@test.com:123456
@@ -673,7 +673,7 @@ darksteel.exe blast -m userpass -dc 192.168.1.1 -test.com -upfile userpass.txt
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
     
-   v1.0.7
+   v1.0.8
 
 
 [+] SUCCESS:     zz@test.com:123456
