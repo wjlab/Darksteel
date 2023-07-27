@@ -2,34 +2,49 @@ package ldap
 
 import (
 	"darksteel/process"
+	"fmt"
 	"github.com/go-ldap/ldap/v3"
+	"github.com/go-ldap/ldap/v3/gssapi"
 	"log"
 )
 
 func LdapInit(domain string, target string, password string, user string, allDelegate string, searchValue string, integrate string, outputContent string, ldapSizeLimit int, outputFile string, allLdap bool, fuzz string) {
 	var listDomain string
 	listDomain = process.DcFormatConversion(domain)
-
 	//判断computerip
 	if integrate == "computerip" && len(fuzz) != 0 {
 		SearchComputerIps(nil, domain, listDomain, ldapSizeLimit, target, outputFile, fuzz)
 		return
 	} else if integrate == "computerip" && len(fuzz) == 0 {
+		//sspi连接
+		ldapClient, err := gssapi.NewSSPIClient()
+		if err != nil {
+			log.Fatalf("error getting SSPI Kerberos client: %v", err)
+		}
+		defer ldapClient.Close()
+
 		//连接
 		l, err := ldap.DialURL("ldap://" + target + ":389")
 		if err != nil {
+			fmt.Println("请输入-h或--help查看帮助信息")
 			log.Fatal(err)
 		}
 		defer l.Close()
 
 		//判断hash验证
-		if len(password) != 32 {
+		if len(user) == 0 && len(password) == 0 {
+			err = l.GSSAPIBind(ldapClient, fmt.Sprintf("ldap/%s", target), "")
+			if err != nil {
+				fmt.Println("-d格式需要写成域控的域名，如dc.test.com")
+				log.Fatalf("error performing GSSAPI bind: %w", err)
+			}
+		} else if len(password) != 32 {
 			err = l.Bind(user+"@"+domain, password)
 			if err != nil {
 				log.Fatal(err)
 			}
 		} else {
-			err = l.NTLMBindWithHash(target, user, password)
+			err = l.NTLMBindWithHash(target, user+"@"+domain, password)
 			if err != nil {
 				log.Fatalf("Failed to bind: %s\n", err)
 			}
@@ -37,21 +52,35 @@ func LdapInit(domain string, target string, password string, user string, allDel
 		SearchComputerIps(&l, domain, listDomain, ldapSizeLimit, target, outputFile, fuzz)
 		return
 	}
+	//sspi连接
+	ldapClient, err := gssapi.NewSSPIClient()
+	if err != nil {
+		log.Fatalf("error getting SSPI Kerberos client: %v", err)
+	}
+	defer ldapClient.Close()
+
 	//连接
 	l, err := ldap.DialURL("ldap://" + target + ":389")
 	if err != nil {
+		fmt.Println("请输入-h或--help查看帮助信息")
 		log.Fatal(err)
 	}
 	defer l.Close()
 
 	//判断hash验证
-	if len(password) != 32 {
+	if len(user) == 0 && len(password) == 0 {
+		err = l.GSSAPIBind(ldapClient, fmt.Sprintf("ldap/%s", target), "")
+		if err != nil {
+			fmt.Println("-d格式需要写成域控的域名，如dc.test.com")
+			log.Fatalf("error performing GSSAPI bind: %w", err)
+		}
+	} else if len(password) != 32 {
 		err = l.Bind(user+"@"+domain, password)
 		if err != nil {
 			log.Fatal(err)
 		}
 	} else {
-		err = l.NTLMBindWithHash(target, user, password)
+		err = l.NTLMBindWithHash(target, user+"@"+domain, password)
 		if err != nil {
 			log.Fatalf("Failed to bind: %s\n", err)
 		}

