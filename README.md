@@ -54,29 +54,26 @@ computerip
 
    v2.0.0
 
-kerberos利用
+自动化域内信息搜集、kerberos利用工具
 
 Usage:
-  darksteel kerberos [flags]
+  darksteel [command]
+
+Available Commands:
+  blast       爆破域内用户
+  completion  Generate the autocompletion script for the specified shell
+  computerip  查询域内计算机的ip地址
+  help        Help about any command
+  kerberos    kerberos利用
+  ldap        ldap查询
 
 Flags:
-  -e, --enctype string       加密类型：RC4、AES128、AES256 (default "rc4")
-  -f, --format string        输出格式为John the Ripper 或 Hashcat 可利用格式 (de
-fault "hashcat")
-  -h, --help                 help for kerberos
-  -l, --ldapSizelimit int    查询LDAP最大数目（默认为0）
-  -p, --pass string          对应的密码或哈希用户
-  -m, --roastmodule string   asreproast
-                               as-rep roast利用
-                             kerberoast
-                               kerberoasting利用
-  -t, --targetuser string    脆弱易攻击的用户
-  -k, --ticket string        使用票证认证时，输入票证的路径
-  -u, --user string          域内的用户名
-
-Global Flags:
   -d, --dc string       域控地址
   -n, --domain string   域名
+  -h, --help            help for darksteel
+
+Use "darksteel [command] --help" for more information about a command.
+
 ```
 # 使用实例
 ## Ldap
