@@ -9,6 +9,7 @@ import (
 
 func SearchUsers(l **ldap.Conn, domain string, ldapSizeLimit int, outputFile string) {
 	var listUser []string
+	var listNumber []int
 	searchUsers := ldap.NewSearchRequest(domain,
 		ldap.ScopeWholeSubtree,
 		ldap.NeverDerefAliases,
@@ -28,16 +29,20 @@ func SearchUsers(l **ldap.Conn, domain string, ldapSizeLimit int, outputFile str
 	}
 	if len(outputFile) != 0 {
 		process.OutFile(("[*] Domain User:\n"), outputFile)
-		for _, j := range listUser {
+		for i, j := range listUser {
+			listNumber = append(listNumber, i)
 			process.OutFile("\t"+j+"\n", outputFile)
 		}
+		process.OutFile(fmt.Sprintf("Number of users: %d\n", len(listNumber)), outputFile)
 		process.OutFile("\n", outputFile)
 		fmt.Printf("[*] Users save file to: %s\n", outputFile)
 	} else {
 		fmt.Printf("[*] Domain User:\n")
-		for _, j := range listUser {
+		for i, j := range listUser {
 			fmt.Println("\t" + j)
+			listNumber = append(listNumber, i)
 		}
+		fmt.Printf("Number of users: %d\n", len(listNumber))
 		fmt.Printf("\n")
 	}
 }
