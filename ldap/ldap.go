@@ -44,7 +44,7 @@ func LdapInit(domain string, target string, password string, user string, allDel
 				log.Fatal(err)
 			}
 		} else {
-			err = l.NTLMBindWithHash(target, user+"@"+domain, password)
+			err = l.NTLMBindWithHash(target, user, password)
 			if err != nil {
 				log.Fatalf("Failed to bind: %s\n", err)
 			}
@@ -80,7 +80,7 @@ func LdapInit(domain string, target string, password string, user string, allDel
 			log.Fatal(err)
 		}
 	} else {
-		err = l.NTLMBindWithHash(target, user+"@"+domain, password)
+		err = l.NTLMBindWithHash(target, user, password)
 		if err != nil {
 			log.Fatalf("Failed to bind: %s\n", err)
 		}
